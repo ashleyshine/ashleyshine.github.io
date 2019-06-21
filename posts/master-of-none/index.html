@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    
+
+    
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+    
+
+    <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon_128x128.png" sizes="128x128">
+
+    <title>
+      
+      
+         Master of None Sentiment Analysis 
+      
+    </title>
+    <link rel="canonical" href="https://ashleyshine.github.io/posts/master-of-none/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  #profile img {
+    margin: 50px auto auto auto;
+    max-width: 200px;
+  }
+
+  .left-justify {
+    float: left;
+  }
+
+  .right-justify {
+    float:right;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+    margin-bottom:10px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    color:#1d1313;
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-top: 50px;
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #description p {
+    color: #403c3b;
+    margin: 0 0;
+  } 
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  .entry-content a {
+    color: #2d96bd;
+    text-decoration: none;
+  }
+
+  #archive-item div {
+    padding-top: 0px;
+    padding-bottom: 25px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+</style>
+
+
+    
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">Ashley Shine</a></h1>
+      <ul>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/posts/">Posts</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> Master of None Sentiment Analysis </h1>
+
+  
+    <div id=sub-header>
+      December 2017 · 14 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    
+
+<p><em>All the <a href="https://github.com/ashleyshine/feels">code for this project</a> is available on github.</em></p>
+
+<p>Things I have wanted to do for a while and finally found time to do:</p>
+
+<ul>
+<li>rewatch Master of None</li>
+<li>play around with some natural language processing (NLP)</li>
+</ul>
+
+<p>Things I also did:</p>
+
+<ul>
+<li>natural language processing with Master of None scripts</li>
+</ul>
+
+<p>The episode scripts used for this analysis were scraped from <a href="https://www.springfieldspringfield.co.uk/">Springfield! Springfield! Movie &amp; TV Show Scripts</a> using <em>download-scripts.py</em>, which can be found <a href="https://github.com/ashleyshine/feels/blob/master/download-scripts.py">here</a>.</p>
+
+<h2 id="sections">Sections</h2>
+
+<ul>
+<li><a href="#thanksgiving">Thanksgiving: text processing</a></li>
+<li><a href="#sentiment-over-episode">Plotting Sentiment in an episode</a></li>
+<li><a href="#sentences">Top Positive &amp; Negative Sentences</a></li>
+<li><a href="#visualizing-scenes">Visualizing Scenes</a></li>
+<li><a href="#season1">Season 1 Analysis</a></li>
+<li><a href="#season2">Season 2 Analysis</a></li>
+<li><a href="#interactive-graphs">Interactive Graphs</a></li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">textblob</span> <span style="color:#069;font-weight:bold">import</span> TextBlob, Sentence
+<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">nltk.corpus</span> <span style="color:#069;font-weight:bold">import</span> stopwords
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pandas</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pd</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">numpy</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">np</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">mpl</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">re</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">os</span>
+
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pygal</span>
+<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">pygal.style</span> <span style="color:#069;font-weight:bold">import</span> Style
+<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">IPython.display</span> <span style="color:#069;font-weight:bold">import</span> display, HTML
+
+<span style="color:#555">%</span>matplotlib inline</code></pre></div>
+<p><a id='thanksgiving'></a></p>
+
+<h2 id="thanksgiving">Thanksgiving!</h2>
+
+<p>I&rsquo;m gonna start with my one of my favorites, the Thanksgiving episode in season 2.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">episode_dir <span style="color:#555">=</span> <span style="color:#c30">&#39;./master-of-none&#39;</span>
+episode_name <span style="color:#555">=</span> <span style="color:#c30">&#39;s02e08-Thanksgiving.txt&#39;</span>
+<span style="color:#069;font-weight:bold">with</span> <span style="color:#366">open</span>(<span style="color:#c30">&#34;{}/{}&#34;</span><span style="color:#555">.</span>format(episode_dir, episode_name), <span style="color:#c30">&#39;r&#39;</span>) <span style="color:#069;font-weight:bold">as</span> f:
+    s2e8_text <span style="color:#555">=</span> f<span style="color:#555">.</span>read()</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_text[:<span style="color:#f60">1000</span>]</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&#34;1\n  [Bob Barker] The first\n Showcase Showdown.\n  On its way, ladies and gentlemen.\n  It is round and around and around\n that it goes.\n  [cheers and applause on TV]\n  Where Denise at?\n  She upstairs with her little boyfriend.\n  [laughing] Oh, wait.\n Denise got a little boyfriend?\n  - Mm-hmm.\n - [laughs]\n  [cheers and applause on TV]\n  Y&#39;all better stop running\n through this house.\n  [Denise] Yes, Grandma.\n  Denise, what were y&#39;all doing up there?\n  Watching Fresh Prince.\n  You weren&#39;t eating candy, were you?\n  No.\n  Dev, do y&#39;all even celebrate\n Thanksgiving in your house?\n  Is that a thing y&#39;all do\n in the Indian community?\n  We have lunch together.\n  Then my dad watches The Godfather\n and falls asleep.\n  [laughs]\n  Well, you are welcome to come have\n  Thanksgiving with us anytime you want.\n  What&#39;s the Indian community?\n  [laughs]\n  Dev is Indian.\n  Wait. I thought Dev was black.\n  - I&#39;m brown.\n - Black people are brown, too.\n  [Catherine] Oh, Lord.\n  Okay.\n  Look, both of you are min&#34;</pre></div>
+<p>We&rsquo;ve got some things that aren&rsquo;t part of the dialogue here: names like [Denise] and [Catherine], and actions like [laughs] and [cheers and applause on TV]. While the latter can give some context to the mood of the scene, I&rsquo;m making an executive decision here to remove them since I want to limit my analysis to the script dialogue.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">clean_text</span>(text):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return text with special characters and non-dialogue (e.g. [laughs], [Denise]) removed.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        text: string
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    text <span style="color:#555">=</span> re<span style="color:#555">.</span>sub(<span style="color:#c30">r</span><span style="color:#c30">&#39;^1\s*&#39;</span>, <span style="color:#c30">&#39;&#39;</span>, text) <span style="color:#09f;font-style:italic"># scraped scripts start with 1</span>
+    dialogue <span style="color:#555">=</span> re<span style="color:#555">.</span>sub(<span style="color:#c30">r</span><span style="color:#c30">&#39;\[.*\]&#39;</span>, <span style="color:#c30">&#39;&#39;</span>, text)
+    <span style="color:#069;font-weight:bold">return</span> re<span style="color:#555">.</span>sub(<span style="color:#c30">&#39;[^A-Za-z0-9</span><span style="color:#c30;font-weight:bold">\&#39;</span><span style="color:#c30">?!. ]+&#39;</span>, <span style="color:#c30">&#39;&#39;</span>, dialogue)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_cleaned_text <span style="color:#555">=</span> clean_text(s2e8_text)</code></pre></div>
+<p>A look at what we&rsquo;ve got now:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_cleaned_text[:<span style="color:#f60">1000</span>]</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&#34; The first Showcase Showdown.  On its way ladies and gentlemen.  It is round and around and around that it goes.    Where Denise at?  She upstairs with her little boyfriend.   Oh wait. Denise got a little boyfriend?   Mmhmm.      Y&#39;all better stop running through this house.   Yes Grandma.  Denise what were y&#39;all doing up there?  Watching Fresh Prince.  You weren&#39;t eating candy were you?  No.  Dev do y&#39;all even celebrate Thanksgiving in your house?  Is that a thing y&#39;all do in the Indian community?  We have lunch together.  Then my dad watches The Godfather and falls asleep.    Well you are welcome to come have  Thanksgiving with us anytime you want.  What&#39;s the Indian community?    Dev is Indian.  Wait. I thought Dev was black.   I&#39;m brown.  Black people are brown too.   Oh Lord.  Okay.  Look both of you are minorities.  What&#39;s a minority?  It&#39;s a group of people who have to work  twice as hard in life to get half as far  and Denise you a black woman  so you gonna have to work three t&#34;</pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_blob <span style="color:#555">=</span> TextBlob(s2e8_cleaned_text)</code></pre></div>
+<h3 id="overall-sentiment-of-entire-episode">Overall sentiment of entire episode:</h3>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_blob<span style="color:#555">.</span>sentiment</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Sentiment(polarity=0.12602021893037516, subjectivity=0.5488213854382333)</pre></div>
+<p>The overall polarity of this episode was 0.126 ( &gt; 0), so it&rsquo;s not <em>too</em> positive, but it&rsquo;s still more positive than it is negative.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">get_sentence_polarities</span>(blob):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return dictionary with {sentence (string): polarity} for sentences in blob.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        blob: TextBlob
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    sentence_polarities <span style="color:#555">=</span> {}
+
+    <span style="color:#069;font-weight:bold">for</span> sent <span style="color:#000;font-weight:bold">in</span> blob<span style="color:#555">.</span>sentences:
+        polarity <span style="color:#555">=</span> sent<span style="color:#555">.</span>sentiment<span style="color:#555">.</span>polarity
+        sentence_polarities[<span style="color:#366">str</span>(sent)] <span style="color:#555">=</span> polarity
+        
+    <span style="color:#069;font-weight:bold">return</span> sentence_polarities</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_sentence_polarities <span style="color:#555">=</span> get_sentence_polarities(s2e8_blob)</code></pre></div>
+<p>Cool, now I have a dictionary mapping sentences to their respective polarities. I&rsquo;m gonna load all of that into a dataframe now and see what we can find.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_sentence_df <span style="color:#555">=</span> pd<span style="color:#555">.</span>DataFrame(<span style="color:#366">list</span>(s2e8_sentence_polarities<span style="color:#555">.</span>items()),
+                                columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;sentence&#39;</span>, <span style="color:#c30">&#39;polarity&#39;</span>])</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_sentence_df<span style="color:#555">.</span>tail()</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sentence</th>
+      <th>polarity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>619</th>
+      <td>Go ahead.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>620</th>
+      <td>So Grandma when we were teenagers  we used to ...</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>621</th>
+      <td>Oh yeah I remember that.</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>622</th>
+      <td>The whole house smelled like reefer.</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>623</th>
+      <td>Can we say grace?</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>I wanna play around with visualizing sentiment over the course of the episode, but one thing that doesn&rsquo;t come with the scripts is timestamps. So instead of plotting sentiment over time (e.g., how many minutes into the episode), I&rsquo;m gonna assign each sentence a &lsquo;relative&rsquo; position - how far into the script it is.</p>
+
+<p>For instance, in this script with 623 sentences, the first sentence would be at <sup>1</sup>&frasl;<sub>623</sub> = .0016 (.16% far along into the script), the 312th sentence would be at about the 50% mark, and the 623rd episode would be at 1 (100% along into the script.)</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_sentence_df[<span style="color:#c30">&#39;relative_position&#39;</span>] <span style="color:#555">=</span> s2e8_sentence_df<span style="color:#555">.</span>index <span style="color:#555">/</span> (<span style="color:#366">len</span>(s2e8_sentence_df) <span style="color:#555">-</span> <span style="color:#f60">1</span>)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_sentence_df<span style="color:#555">.</span>tail()</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sentence</th>
+      <th>polarity</th>
+      <th>relative_position</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>619</th>
+      <td>Go ahead.</td>
+      <td>0.0</td>
+      <td>0.993579</td>
+    </tr>
+    <tr>
+      <th>620</th>
+      <td>So Grandma when we were teenagers  we used to ...</td>
+      <td>0.0</td>
+      <td>0.995185</td>
+    </tr>
+    <tr>
+      <th>621</th>
+      <td>Oh yeah I remember that.</td>
+      <td>0.0</td>
+      <td>0.996790</td>
+    </tr>
+    <tr>
+      <th>622</th>
+      <td>The whole house smelled like reefer.</td>
+      <td>0.2</td>
+      <td>0.998395</td>
+    </tr>
+    <tr>
+      <th>623</th>
+      <td>Can we say grace?</td>
+      <td>0.0</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><a id='sentiment-over-episode'></a></p>
+
+<h2 id="plotting-sentiment-over-the-course-of-the-episode">Plotting sentiment over the course of the episode</h2>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#09f;font-style:italic"># set matplotlib parameters</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;axes.titlesize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">15</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;axes.labelsize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">13</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;legend.fontsize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">13</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;xtick.labelsize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">12</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;ytick.labelsize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">12</span>
+
+plt<span style="color:#555">.</span>style<span style="color:#555">.</span>use(<span style="color:#c30">&#39;seaborn-white&#39;</span>)
+
+blue_gradient <span style="color:#555">=</span> [<span style="color:#c30">&#39;#456B83&#39;</span>,<span style="color:#c30">&#39;#48768F&#39;</span>,<span style="color:#c30">&#39;#4A829B&#39;</span>,<span style="color:#c30">&#39;#4B8FA6&#39;</span>,<span style="color:#c30">&#39;#4C9BB1&#39;</span>,
+             <span style="color:#c30">&#39;#4DA8BC&#39;</span>,<span style="color:#c30">&#39;#4DB5C7&#39;</span>,<span style="color:#c30">&#39;#4DC2D1&#39;</span>,<span style="color:#c30">&#39;#4DCFDB&#39;</span>,<span style="color:#c30">&#39;#4EDDE4&#39;</span>] <span style="color:#09f;font-style:italic"># blue gradient</span>
+red_gradient <span style="color:#555">=</span> [<span style="color:#c30">&#39;#BA6370&#39;</span>,<span style="color:#c30">&#39;#C26772&#39;</span>,<span style="color:#c30">&#39;#CA6B73&#39;</span>,<span style="color:#c30">&#39;#D16F74&#39;</span>,<span style="color:#c30">&#39;#D97375&#39;</span>,
+             <span style="color:#c30">&#39;#E07776&#39;</span>,<span style="color:#c30">&#39;#E87C77&#39;</span>,<span style="color:#c30">&#39;#EF8077&#39;</span>,<span style="color:#c30">&#39;#F68578&#39;</span>,<span style="color:#c30">&#39;#FD8A78&#39;</span>] <span style="color:#09f;font-style:italic"># red gradient</span>
+colors <span style="color:#555">=</span> [<span style="color:#c30">&#39;#556270&#39;</span>, <span style="color:#c30">&#39;#4ECDC4&#39;</span>, <span style="color:#c30">&#39;#B4D869&#39;</span>, <span style="color:#c30">&#39;#FF6B6B&#39;</span>, <span style="color:#c30">&#39;#C44D58&#39;</span>,
+          <span style="color:#c30">&#39;#FF895D&#39;</span>, <span style="color:#c30">&#39;#EC9F39&#39;</span>, <span style="color:#c30">&#39;#197171&#39;</span>, <span style="color:#c30">&#39;#4087CE&#39;</span>, <span style="color:#c30">&#39;#624464&#39;</span>] <span style="color:#09f;font-style:italic"># different colors</span></code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">create_plot</span>(figsize<span style="color:#555">=</span>(<span style="color:#f60">15</span>,<span style="color:#f60">6</span>), title<span style="color:#555">=</span><span style="color:#c30">&#34;&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;&#34;</span>, fig<span style="color:#555">=</span>None, ax<span style="color:#555">=</span>None, episode<span style="color:#555">=</span>False):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Create matplotlib plot with provided parameters. Returns fig, ax.
+</span><span style="color:#c30">    If fig &amp; ax are provided, changes will be applied to them instead of creating a 
+</span><span style="color:#c30">        new plot.
+</span><span style="color:#c30">    If the plot is for an episode, the appropriate xticks &amp; labels will be applied.
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    <span style="color:#069;font-weight:bold">if</span> fig <span style="color:#555">==</span> None <span style="color:#000;font-weight:bold">and</span> ax <span style="color:#555">==</span> None:
+        fig, ax <span style="color:#555">=</span> plt<span style="color:#555">.</span>subplots(figsize<span style="color:#555">=</span>figsize)
+    
+    ax<span style="color:#555">.</span>set_title(title)
+    ax<span style="color:#555">.</span>set_xlabel(xlabel)
+    ax<span style="color:#555">.</span>set_ylabel(ylabel)
+    
+    <span style="color:#069;font-weight:bold">if</span> episode:
+        xtick_labels <span style="color:#555">=</span> np<span style="color:#555">.</span>array([<span style="color:#f60">0</span>, <span style="color:#f60">0.25</span>, <span style="color:#f60">0.50</span>, <span style="color:#f60">0.75</span>, <span style="color:#f60">1.0</span>])
+        ax<span style="color:#555">.</span>set_xticks([<span style="color:#f60">0</span>, <span style="color:#f60">0.25</span>, <span style="color:#f60">0.5</span>, <span style="color:#f60">0.75</span>, <span style="color:#f60">1.0</span>])
+        ax<span style="color:#555">.</span>set_xticklabels(xtick_labels)
+
+        ax<span style="color:#555">.</span>axhline(<span style="color:#f60">0</span>, color<span style="color:#555">=</span><span style="color:#c30">&#39;#D3D3D3&#39;</span>, zorder<span style="color:#555">=</span><span style="color:#f60">1</span>, lw<span style="color:#555">=</span><span style="color:#f60">0.5</span>)
+        ax<span style="color:#555">.</span>set_ylim(<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">1</span>)
+        ax<span style="color:#555">.</span>set_xlim(<span style="color:#f60">0</span>, <span style="color:#f60">1</span>)
+        
+    ax<span style="color:#555">.</span>spines[<span style="color:#c30">&#39;right&#39;</span>]<span style="color:#555">.</span>set_visible(False)
+    ax<span style="color:#555">.</span>spines[<span style="color:#c30">&#39;top&#39;</span>]<span style="color:#555">.</span>set_visible(False)
+    ax<span style="color:#555">.</span>spines[<span style="color:#c30">&#39;bottom&#39;</span>]<span style="color:#555">.</span>set_visible(False)
+
+    ax<span style="color:#555">.</span>spines[<span style="color:#c30">&#39;left&#39;</span>]<span style="color:#555">.</span>set_color(<span style="color:#c30">&#39;#D3D3D3&#39;</span>)
+
+                
+    <span style="color:#069;font-weight:bold">return</span> fig, ax</code></pre></div>
+<p>Let&rsquo;s start with something simple - a line plot.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Sentiment in &#39;Thanksgiving&#39;</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Time&#34;</span>,
+                      ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Sentiment&#34;</span>, episode<span style="color:#555">=</span>True)
+
+ax<span style="color:#555">.</span>plot(s2e8_sentence_df[<span style="color:#c30">&#39;relative_position&#39;</span>], s2e8_sentence_df[<span style="color:#c30">&#39;polarity&#39;</span>], lw<span style="color:#555">=</span><span style="color:#f60">1.5</span>)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/master-of-none/output_29_0.png" alt="png" /></p>
+
+<p>There&rsquo;s a <em>lot</em> of detail here, since I&rsquo;ve plotted the sentiments of every single sentence in the episode (and there are 602 sentences) - so it&rsquo;s hard to see the overall trends over the episode.</p>
+
+<p>Instead of plotting the sentiment over every single sentence, I&rsquo;m gonna look at the average sentiments over &lsquo;windows&rsquo; of N sentences. I&rsquo;ll start with a default window of 3 sentences, but we can play around with that later.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">average_over_window</span>(df, size<span style="color:#555">=</span><span style="color:#f60">3</span>):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Average polarities of a dataframe over a &#39;window&#39; of n sentences. 
+</span><span style="color:#c30">    Return dataframe columns [&#39;polarity&#39;, &#39;relative_position&#39;].
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        df: dataframe with &#39;polarity&#39; column
+</span><span style="color:#c30">        size: size of window
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    index <span style="color:#555">=</span> <span style="color:#f60">0</span>
+    polarities <span style="color:#555">=</span> []
+    
+    <span style="color:#069;font-weight:bold">while</span>(index <span style="color:#555">+</span> size <span style="color:#555">&lt;</span> <span style="color:#366">len</span>(df)):
+        window <span style="color:#555">=</span> df[index:index<span style="color:#555">+</span>size]
+        polarity <span style="color:#555">=</span> window[<span style="color:#c30">&#39;polarity&#39;</span>]<span style="color:#555">.</span>mean()
+        polarities<span style="color:#555">.</span>append(polarity)
+        index <span style="color:#555">+=</span> size
+        
+    averaged_polarities <span style="color:#555">=</span> pd<span style="color:#555">.</span>DataFrame({<span style="color:#c30">&#39;polarity&#39;</span>: polarities})
+    averaged_polarities[<span style="color:#c30">&#39;relative_position&#39;</span>] <span style="color:#555">=</span> averaged_polarities<span style="color:#555">.</span>index <span style="color:#555">/</span> (<span style="color:#366">len</span>(averaged_polarities) <span style="color:#555">-</span> <span style="color:#f60">1</span>)
+    
+    <span style="color:#069;font-weight:bold">return</span> averaged_polarities</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_averaged_polarities <span style="color:#555">=</span> average_over_window(s2e8_sentence_df)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Sentiment in &#39;Thanksgiving&#39;</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Time&#34;</span>,
+                      ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Sentiment&#34;</span>, episode<span style="color:#555">=</span>True)
+
+ax<span style="color:#555">.</span>plot(s2e8_averaged_polarities[<span style="color:#c30">&#39;relative_position&#39;</span>], 
+        s2e8_averaged_polarities[<span style="color:#c30">&#39;polarity&#39;</span>],lw<span style="color:#555">=</span><span style="color:#f60">2</span>)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/master-of-none/output_33_0.png" alt="png" /></p>
+
+<p>That&rsquo;s a lot better. One thing to note is that we do lose some detail by averaging over windows. For instance, in the first graph where every single sentence is plotted, we can see the points where some really negative sentences are said (e.g. a sentence with a polarity of -1 around the 0.75 time mark). Since I&rsquo;m now taking the averages over windows, we don&rsquo;t see such extreme values anymore.</p>
+
+<p>Coding the sentences by color will also help convey information about sentiment. I&rsquo;m gonna plot the sentiment of each sentence as a bar graph, where sentences with positive sentiment will be blue and sentences with negative sentiment will be red. I&rsquo;m also gonna use color gradients, where the more &lsquo;extreme&rsquo; a value is (ie, closer to -1 or 1), the darker it&rsquo;s bar will be.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> create_plot(figsize<span style="color:#555">=</span>(<span style="color:#f60">15</span>, <span style="color:#f60">6</span>), title<span style="color:#555">=</span><span style="color:#c30">&#34;Sentence Sentiment in &#39;Thanksgiving&#39;</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#39;Time&#39;</span>,
+                      ylabel<span style="color:#555">=</span><span style="color:#c30">&#39;Sentiment&#39;</span>, episode<span style="color:#555">=</span>True)
+
+<span style="color:#09f;font-style:italic"># create color gradient bins</span>
+sent_colors <span style="color:#555">=</span> pd<span style="color:#555">.</span>cut(s2e8_sentence_df[<span style="color:#c30">&#39;polarity&#39;</span>], 
+                          np<span style="color:#555">.</span>linspace(<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">1</span>, num<span style="color:#555">=</span><span style="color:#f60">21</span>, endpoint<span style="color:#555">=</span>True), include_lowest<span style="color:#555">=</span>True,
+                          labels<span style="color:#555">=</span>red_gradient <span style="color:#555">+</span> blue_gradient[::<span style="color:#555">-</span><span style="color:#f60">1</span>])
+
+ax<span style="color:#555">.</span>bar(s2e8_sentence_df[<span style="color:#c30">&#39;relative_position&#39;</span>], s2e8_sentence_df[<span style="color:#c30">&#39;polarity&#39;</span>], 
+       color<span style="color:#555">=</span>sent_colors, width<span style="color:#555">=.</span><span style="color:#f60">9</span><span style="color:#555">/</span><span style="color:#366">len</span>(s2e8_sentence_df))
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/master-of-none/output_36_0.png" alt="png" /></p>
+
+<p>I&rsquo;ve plotted all 602 sentences here, it&rsquo;s easier to understand than the original line graph with all 602 sentences. There&rsquo;s also a lot more detail retained - you can see the points where really negalive sentences (sentiment of -1) were said.</p>
+
+<p>And with the sentiments &lsquo;averaged&rsquo; over windows of 3 sentences:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Sentiment in &#39;Thanksgiving&#39;</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#39;Time&#39;</span>,
+                      ylabel<span style="color:#555">=</span><span style="color:#c30">&#39;Sentiment&#39;</span>, episode<span style="color:#555">=</span>True)
+
+sent_colors <span style="color:#555">=</span> pd<span style="color:#555">.</span>cut(s2e8_averaged_polarities[<span style="color:#c30">&#39;polarity&#39;</span>], 
+                     np<span style="color:#555">.</span>linspace(<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">1</span>, num<span style="color:#555">=</span><span style="color:#f60">21</span>, endpoint<span style="color:#555">=</span>True), 
+                     include_lowest<span style="color:#555">=</span>True, labels<span style="color:#555">=</span>red_gradient <span style="color:#555">+</span> blue_gradient[::<span style="color:#555">-</span><span style="color:#f60">1</span>])
+
+ax<span style="color:#555">.</span>bar(s2e8_averaged_polarities[<span style="color:#c30">&#39;relative_position&#39;</span>], s2e8_averaged_polarities[<span style="color:#c30">&#39;polarity&#39;</span>], 
+       color<span style="color:#555">=</span>sent_colors, width<span style="color:#555">=</span><span style="color:#f60">0.8</span><span style="color:#555">/</span><span style="color:#366">len</span>(s2e8_averaged_polarities));
+
+ax<span style="color:#555">.</span>set_ylim(<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">1</span>)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/master-of-none/output_38_0.png" alt="png" /></p>
+
+<p><a id='sentences'></a></p>
+
+<p>Gonna write a function to create the dataframe of with sentence, polarity, &amp; relative position from the dictionary of sentences &amp; polarities.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">create_sentence_df</span>(sentence_polarities, window<span style="color:#555">=</span><span style="color:#f60">1</span>):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return dataframe with columns [&#39;sentence&#39;, &#39;polarity&#39;, &#39;relative_position&#39;].
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        sentence_polarities: dictionary with {sentence: polarity}
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    sentence_df <span style="color:#555">=</span> pd<span style="color:#555">.</span>DataFrame(<span style="color:#366">list</span>(sentence_polarities<span style="color:#555">.</span>items()),
+                               columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;sentence&#39;</span>, <span style="color:#c30">&#39;polarity&#39;</span>])
+    sentence_df[<span style="color:#c30">&#39;relative_position&#39;</span>] <span style="color:#555">=</span> sentence_df<span style="color:#555">.</span>index <span style="color:#555">/</span> (<span style="color:#366">len</span>(sentence_df) <span style="color:#555">-</span> <span style="color:#f60">1</span>)
+
+    <span style="color:#069;font-weight:bold">return</span> sentence_df</code></pre></div>
+<p>Let&rsquo;s take a look at the some of the most positive &amp; negative sentences in the episode!</p>
+
+<h3 id="top-10-positive-sentences">Top 10 Positive Sentences</h3>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2e8_sorted_sentences <span style="color:#555">=</span> s2e8_sentence_df<span style="color:#555">.</span>sort_values(by<span style="color:#555">=</span>[<span style="color:#c30">&#39;polarity&#39;</span>], ascending<span style="color:#555">=</span>False)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#39;Sentence|Polarity&#39;</span>)
+<span style="color:#069;font-weight:bold">for</span> index, row, <span style="color:#000;font-weight:bold">in</span> s2e8_sorted_sentences[:<span style="color:#f60">10</span>]<span style="color:#555">.</span>iterrows():
+    polarity <span style="color:#555">=</span> <span style="color:#366">round</span>(row[<span style="color:#c30">&#39;polarity&#39;</span>], <span style="color:#f60">3</span>)
+    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#39;{}|{}&#39;</span><span style="color:#555">.</span>format(row[<span style="color:#c30">&#39;sentence&#39;</span>], polarity))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Sentence|Polarity
+I&#39;m happy for you.|0.8
+They&#39;re great.|0.8
+Welcome darling.|0.8
+Well you are welcome to come have  Thanksgiving with us anytime you want.|0.8
+I said your yams turned out really nice this year!|0.75
+Grandma Ernestine your yams turned out really nice this year!|0.75
+That&#39;s good to know.|0.7
+Yeah man it&#39;s really good.|0.7
+It&#39;s so great to  Nice to meet you.|0.7
+They good?|0.7</pre></div>
+<h3 id="top-10-negative-sentences">Top 10 Negative Sentences</h3>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#39;Sentence|Polarity&#39;</span>)
+<span style="color:#069;font-weight:bold">for</span> index, row, <span style="color:#000;font-weight:bold">in</span> s2e8_sorted_sentences[::<span style="color:#555">-</span><span style="color:#f60">1</span>][:<span style="color:#f60">10</span>]<span style="color:#555">.</span>iterrows():
+    polarity <span style="color:#555">=</span> <span style="color:#366">round</span>(row[<span style="color:#c30">&#39;polarity&#39;</span>], <span style="color:#f60">3</span>)
+    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#39;{}|{}&#39;</span><span style="color:#555">.</span>format(row[<span style="color:#c30">&#39;sentence&#39;</span>], polarity))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Sentence|Polarity
+Horrible.|-1.0
+That&#39;s horrible.|-1.0
+Damn why you got to hate on the Pan?|-0.8
+That character was an idiot.|-0.8
+Stupid.|-0.8
+seventeenfoot aluminum boat that broke apart    Man I told you this is stupid.|-0.8
+Don&#39;t you ask another fucking question!|-0.75
+Well you know my hearing is bad.|-0.7
+Why would they be mad?|-0.625
+I feel like all three of them are gonna be mad at you about that.|-0.625</pre></div>
+<p><em>I said your yams turned out really nice this year!</em></p>
+
+<p><a id='visualizing-scenes'></a></p>
+
+<h2 id="visualizing-scenes">Visualizing Scenes</h2>
+
+<p>I spent a lot of time thinking about how to display the progression of sentiment in a scene along with sentences. I ended up going with an interactive line chart to avoid clutter. You still get to see the ups-and-downs in emotion as the scene progresses, but you can also hover over points in the line graph to see the sentence associated with each sentiment. (Also, it gave me an excuse to mess around with pygal!)</p>
+
+<p><em>Note: these graphs won&rsquo;t display interactively here. They will work when run in jupyter notebook or when viewed on <a href="https://nbviewer.jupyter.org/github/ashleyshine/feels/blob/master/Master-of-None.ipynb?flush_cache=true#interactive-graphs">nbviewer</a>. The static versions of the graphs are still available here.</em></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#09f;font-style:italic"># use for inline display of interactive plots</span>
+base_html <span style="color:#555">=</span> <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">&lt;!DOCTYPE html&gt;
+</span><span style="color:#c30">&lt;html&gt;
+</span><span style="color:#c30">  &lt;head&gt;
+</span><span style="color:#c30">  &lt;script type=&#34;text/javascript&#34; src=&#34;http://kozea.github.com/pygal.js/javascripts/svg.jquery.js&#34;&gt;&lt;/script&gt;
+</span><span style="color:#c30">  &lt;script type=&#34;text/javascript&#34; src=&#34;https://kozea.github.io/pygal.js/2.0.x/pygal-tooltips.min.js&#34;&#34;&gt;&lt;/script&gt;
+</span><span style="color:#c30">  &lt;/head&gt;
+</span><span style="color:#c30">  &lt;body&gt;
+</span><span style="color:#c30">    &lt;figure&gt;
+</span><span style="color:#c30">      {rendered_chart}
+</span><span style="color:#c30">    &lt;/figure&gt;
+</span><span style="color:#c30">  &lt;/body&gt;
+</span><span style="color:#c30">&lt;/html&gt;
+</span><span style="color:#c30">&#34;&#34;&#34;</span>
+
+<span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">inline_display</span>(chart):
+    rendered_chart <span style="color:#555">=</span> chart<span style="color:#555">.</span>render(is_unicode<span style="color:#555">=</span>True)
+    plot_html <span style="color:#555">=</span> base_html<span style="color:#555">.</span>format(rendered_chart<span style="color:#555">=</span>rendered_chart)
+    display(HTML(plot_html))
+    
+custom_style <span style="color:#555">=</span> Style(
+    background <span style="color:#555">=</span> <span style="color:#c30">&#39;#ffffff&#39;</span>, <span style="color:#09f;font-style:italic"># image background </span>
+    tooltip_font_size <span style="color:#555">=</span> <span style="color:#f60">18</span>
+)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">line_chart1 <span style="color:#555">=</span> pygal<span style="color:#555">.</span>Line(width<span style="color:#555">=</span><span style="color:#f60">800</span>, height<span style="color:#555">=</span><span style="color:#f60">300</span>, dots_size<span style="color:#555">=</span><span style="color:#f60">3</span>, show_legend<span style="color:#555">=</span>False, 
+                        interpolate<span style="color:#555">=</span><span style="color:#c30">&#39;cubic&#39;</span>, style<span style="color:#555">=</span>custom_style, show_x_labels<span style="color:#555">=</span>False,
+                        title<span style="color:#555">=</span><span style="color:#c30">&#34;Yams Scene in s02e08 &#39;Thanksgiving&#39;&#34;</span>)
+
+line_chart1<span style="color:#555">.</span>y_labels <span style="color:#555">=</span> [<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#555">-</span><span style="color:#f60">0.5</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0.5</span>, <span style="color:#f60">1.0</span>]
+line_chart1<span style="color:#555">.</span>x_labels <span style="color:#555">=</span> s2e8_sentence_df[<span style="color:#f60">319</span>:<span style="color:#f60">400</span>][<span style="color:#c30">&#39;sentence&#39;</span>]
+line_chart1<span style="color:#555">.</span>add(<span style="color:#c30">&#39;Sentence&#39;</span>, s2e8_sentence_df[<span style="color:#f60">319</span>:<span style="color:#f60">400</span>][<span style="color:#c30">&#39;polarity&#39;</span>])
+
+<span style="color:#09f;font-style:italic"># inline_display(line_chart1)</span>
+line_chart1<span style="color:#555">.</span>render_to_file(<span style="color:#c30">&#39;./img/chart1.svg&#39;</span>)</code></pre></div>
+<h3 id="and-some-other-fun-scenes">And some other fun scenes:</h3>
+
+<p>Dev and Arnold get their car stuck driving in an alley in Italy. Dev (being super helpful) climbs out and take a photo.</p>
+
+<p>Fun fact: <a href="https://www.buzzfeed.com/scottybryan/master-of-none-season-two-episode-two?utm_term=.utZwX73NB#.ojM9Ex24j">this actually happened</a></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">episode<span style="color:#555">=</span><span style="color:#c30">&#39;s02e02-Le-Nozze.txt&#39;</span>
+<span style="color:#069;font-weight:bold">with</span> <span style="color:#366">open</span>(<span style="color:#c30">&#39;{}/{}&#39;</span><span style="color:#555">.</span>format(episode_dir, episode), <span style="color:#c30">&#39;r&#39;</span>) <span style="color:#069;font-weight:bold">as</span> f:
+    text <span style="color:#555">=</span> f<span style="color:#555">.</span>read()
+    
+cleaned_text <span style="color:#555">=</span> clean_text(text)
+blob <span style="color:#555">=</span> TextBlob(cleaned_text)
+sentence_polarities <span style="color:#555">=</span> get_sentence_polarities(blob)
+s2e2_sentence_df <span style="color:#555">=</span> create_sentence_df(sentence_polarities)
+
+line_chart3 <span style="color:#555">=</span> pygal<span style="color:#555">.</span>Line(width<span style="color:#555">=</span><span style="color:#f60">800</span>, height<span style="color:#555">=</span><span style="color:#f60">300</span>, dots_size<span style="color:#555">=</span><span style="color:#f60">3</span>, show_legend<span style="color:#555">=</span>False, 
+                        interpolate<span style="color:#555">=</span><span style="color:#c30">&#39;cubic&#39;</span>, style<span style="color:#555">=</span>custom_style, show_x_labels<span style="color:#555">=</span>False,
+                        title<span style="color:#555">=</span><span style="color:#c30">&#34;Dev-And-Arnold-Get-Stuck-Between-Walls Scene in s02e02 &#39;Le Nozze&#39;&#34;</span>)
+
+line_chart3<span style="color:#555">.</span>y_labels <span style="color:#555">=</span> [<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#555">-</span><span style="color:#f60">0.5</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0.5</span>, <span style="color:#f60">1.0</span>]
+line_chart3<span style="color:#555">.</span>x_labels <span style="color:#555">=</span> s2e2_sentence_df[<span style="color:#f60">200</span>:<span style="color:#f60">275</span>][<span style="color:#c30">&#39;sentence&#39;</span>]
+line_chart3<span style="color:#555">.</span>add(<span style="color:#c30">&#39;Sentence&#39;</span>, s2e2_sentence_df[<span style="color:#f60">200</span>:<span style="color:#f60">275</span>][<span style="color:#c30">&#39;polarity&#39;</span>])
+
+<span style="color:#09f;font-style:italic"># inline_display(line_chart3)</span>
+line_chart3<span style="color:#555">.</span>render_to_file(<span style="color:#c30">&#39;./img/chart3.svg&#39;</span>)</code></pre></div>
+<p><img src="https://rawgit.com/ashleyshine/feels/master/img/chart3.svg" alt="chart3" /></p>
+
+<p>One of my favorite scenes is when Francesca (being Italian) absolutely freaks out when she and Dev come across an American pharmacy. It has everything! 20 kinds of toothpaste, tiny Vaseline, and <em>chocolate diarrhea medicine</em>. As she tells Dev, this is an amazing time to be alive.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">episode<span style="color:#555">=</span><span style="color:#c30">&#39;s02e09-Amarsi-Un-Po.txt&#39;</span>
+<span style="color:#069;font-weight:bold">with</span> <span style="color:#366">open</span>(<span style="color:#c30">&#39;{}/{}&#39;</span><span style="color:#555">.</span>format(episode_dir, episode), <span style="color:#c30">&#39;r&#39;</span>) <span style="color:#069;font-weight:bold">as</span> f:
+    text <span style="color:#555">=</span> f<span style="color:#555">.</span>read()
+    
+cleaned_text <span style="color:#555">=</span> clean_text(text)
+blob <span style="color:#555">=</span> TextBlob(cleaned_text)
+episode_polarity <span style="color:#555">=</span> blob<span style="color:#555">.</span>sentiment<span style="color:#555">.</span>polarity
+sentence_polarities <span style="color:#555">=</span> get_sentence_polarities(blob)
+s2e9_sentence_df <span style="color:#555">=</span> create_sentence_df(sentence_polarities)
+
+line_chart2 <span style="color:#555">=</span> pygal<span style="color:#555">.</span>Line(width<span style="color:#555">=</span><span style="color:#f60">800</span>, height<span style="color:#555">=</span><span style="color:#f60">300</span>, dots_size<span style="color:#555">=</span><span style="color:#f60">3</span>, show_legend<span style="color:#555">=</span>False, 
+                        interpolate<span style="color:#555">=</span><span style="color:#c30">&#39;cubic&#39;</span>, style<span style="color:#555">=</span>custom_style, show_x_labels<span style="color:#555">=</span>False,
+                        title<span style="color:#555">=</span><span style="color:#c30">&#34;Pharmacy Scene in s02e09 &#39;Amarsi Un Po&#39;&#34;</span>)
+
+line_chart2<span style="color:#555">.</span>y_labels <span style="color:#555">=</span> [<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#555">-</span><span style="color:#f60">0.5</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0.5</span>, <span style="color:#f60">1.0</span>]
+line_chart2<span style="color:#555">.</span>x_labels <span style="color:#555">=</span> s2e9_sentence_df[<span style="color:#f60">152</span>:<span style="color:#f60">195</span>][<span style="color:#c30">&#39;sentence&#39;</span>]
+line_chart2<span style="color:#555">.</span>add(<span style="color:#c30">&#39;Sentence&#39;</span>, s2e9_sentence_df[<span style="color:#f60">152</span>:<span style="color:#f60">195</span>][<span style="color:#c30">&#39;polarity&#39;</span>])
+
+<span style="color:#09f;font-style:italic"># inline_display(line_chart2)</span>
+line_chart2<span style="color:#555">.</span>render_to_file(<span style="color:#c30">&#39;./img/chart2.svg&#39;</span>)</code></pre></div>
+<p><img src="https://rawgit.com/ashleyshine/feels/master/img/chart2.svg" alt="chart2" /></p>
+
+<h2 id="oh-how-the-seasons-change">Oh, how the seasons change&hellip;</h2>
+
+<p>Okay! Now let&rsquo;s look at seasons 1 and 2 as a whole.</p>
+
+<p>I&rsquo;ve got all the scripts for both season 1 and 2, but I wanna look at season 1 first.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">get_season_episodes</span>(directory, season):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return list of episode files for a given season.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        directory: string path to directory with script files
+</span><span style="color:#c30">        season: int
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    <span style="color:#069;font-weight:bold">if</span> season <span style="color:#555">&lt;</span> <span style="color:#f60">10</span>:
+        season_str <span style="color:#555">=</span> <span style="color:#c30">&#39;0{}&#39;</span><span style="color:#555">.</span>format(season) <span style="color:#09f;font-style:italic"># single digit seasons are preceded by a 0</span>
+    <span style="color:#069;font-weight:bold">else</span>:
+        season_str <span style="color:#555">=</span> <span style="color:#366">str</span>(season)
+        
+    episodes <span style="color:#555">=</span> []
+    <span style="color:#069;font-weight:bold">for</span> <span style="color:#366">file</span> <span style="color:#000;font-weight:bold">in</span> os<span style="color:#555">.</span>listdir(directory):
+        regex_str <span style="color:#555">=</span> <span style="color:#c30">r</span><span style="color:#c30">&#39;^s{}.*&#39;</span><span style="color:#555">.</span>format(season_str)
+        mo <span style="color:#555">=</span> re<span style="color:#555">.</span>search(regex_str, <span style="color:#366">file</span>, re<span style="color:#555">.</span>IGNORECASE)
+        <span style="color:#069;font-weight:bold">if</span> mo:
+            episode <span style="color:#555">=</span> mo<span style="color:#555">.</span>group()
+            episodes<span style="color:#555">.</span>append(episode)
+    
+    <span style="color:#069;font-weight:bold">return</span> episodes</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">get_episode_title</span>(text, episode_info<span style="color:#555">=</span>False):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return string with episode title, and season/episode info if requested.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        text: string
+</span><span style="color:#c30">        episode_info: True to include season/episode info.
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    <span style="color:#069;font-weight:bold">if</span> episode_info:
+        title <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30">&#39;-&#39;</span>, <span style="color:#c30">&#39; &#39;</span>)<span style="color:#555">.</span>replace(<span style="color:#c30">&#39;.txt&#39;</span>, <span style="color:#c30">&#39;&#39;</span>)
+    <span style="color:#069;font-weight:bold">else</span>:
+        regex_str <span style="color:#555">=</span> <span style="color:#c30">r</span><span style="color:#c30">&#39;s\d+e\d+(.*)&#39;</span>
+        mo <span style="color:#555">=</span> re<span style="color:#555">.</span>search(regex_str, text, re<span style="color:#555">.</span>IGNORECASE)
+        title <span style="color:#555">=</span> mo<span style="color:#555">.</span>group(<span style="color:#f60">1</span>)
+    <span style="color:#069;font-weight:bold">return</span> title</code></pre></div>
+<p>For the curious (aka me), I&rsquo;m gonna write the top 10 positive &amp; negative sentences in each episode to a file to avoid clutter here. Peep &lsquo;Master-of-None-sentences.txt&rsquo;.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">write_top_sentences</span>(f, sentence_df, title):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Write the top 10 positive &amp; negative sentences to file.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        f: file to write to
+</span><span style="color:#c30">        sentence_df: dataframe with sentences &amp; polarities
+</span><span style="color:#c30">        title: string
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    sorted_sentences <span style="color:#555">=</span> sentence_df<span style="color:#555">.</span>sort_values(by<span style="color:#555">=</span>[<span style="color:#c30">&#39;polarity&#39;</span>], ascending<span style="color:#555">=</span>False)
+    f<span style="color:#555">.</span>write(<span style="color:#366">str</span>(<span style="color:#c30">&#39;********** {} **********</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span><span style="color:#555">.</span>format(title)))
+        
+    f<span style="color:#555">.</span>write(<span style="color:#c30">&#39;</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">***** Top 10 Positive Sentences *****</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span>)
+    f<span style="color:#555">.</span>write(<span style="color:#c30">&#39;Sentence|Polarity</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span>)
+    <span style="color:#069;font-weight:bold">for</span> index, row, <span style="color:#000;font-weight:bold">in</span> sorted_sentences[:<span style="color:#f60">10</span>]<span style="color:#555">.</span>iterrows():
+        polarity <span style="color:#555">=</span> <span style="color:#366">round</span>(row[<span style="color:#c30">&#39;polarity&#39;</span>], <span style="color:#f60">3</span>)
+        f<span style="color:#555">.</span>write(<span style="color:#c30">&#39;{}|{}</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span><span style="color:#555">.</span>format(row[<span style="color:#c30">&#39;sentence&#39;</span>], polarity))
+    
+    f<span style="color:#555">.</span>write(<span style="color:#c30">&#39;</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">***** Top 10 Negative Sentences *****</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span>)
+    f<span style="color:#555">.</span>write(<span style="color:#c30">&#39;Sentence|Polarity</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span>)
+    <span style="color:#069;font-weight:bold">for</span> index, row, <span style="color:#000;font-weight:bold">in</span> sorted_sentences[::<span style="color:#555">-</span><span style="color:#f60">1</span>][:<span style="color:#f60">10</span>]<span style="color:#555">.</span>iterrows():
+        polarity <span style="color:#555">=</span> <span style="color:#366">round</span>(row[<span style="color:#c30">&#39;polarity&#39;</span>], <span style="color:#f60">3</span>)
+        f<span style="color:#555">.</span>write(<span style="color:#c30">&#39;{}|{}</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span><span style="color:#555">.</span>format(row[<span style="color:#c30">&#39;sentence&#39;</span>], polarity))
+        
+    f<span style="color:#555">.</span>write(<span style="color:#c30">&#39;</span><span style="color:#c30;font-weight:bold">\n\n</span><span style="color:#c30">&#39;</span>)</code></pre></div>
+<p><a id='season1'></a></p>
+
+<h2 id="season-1">Season 1</h2>
+
+<p>Now I&rsquo;m ready to check out the sentiments over the course of each episode in season 1! While I&rsquo;m at it, I&rsquo;m gonna grab the overall polarity of each episode as a whole as well.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s1_episodes <span style="color:#555">=</span> get_season_episodes(episode_dir, <span style="color:#f60">1</span>)
+s1_episodes <span style="color:#555">=</span> <span style="color:#366">sorted</span>(s1_episodes)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, axes <span style="color:#555">=</span> plt<span style="color:#555">.</span>subplots(figsize<span style="color:#555">=</span>(<span style="color:#f60">15</span>, <span style="color:#f60">30</span>), nrows<span style="color:#555">=</span><span style="color:#f60">10</span>, ncols<span style="color:#555">=</span><span style="color:#f60">1</span>)
+axes <span style="color:#555">=</span> axes<span style="color:#555">.</span>reshape(<span style="color:#555">-</span><span style="color:#f60">1</span>)
+
+s1_episode_polarities <span style="color:#555">=</span> {}
+
+<span style="color:#09f;font-style:italic"># uncomment to write top sentences to file</span>
+<span style="color:#09f;font-style:italic"># sentence_file = open(&#39;./Master-of-None-sentences.txt&#39;, &#39;w&#39;)</span>
+
+<span style="color:#069;font-weight:bold">for</span> i, (ax, episode) <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>(<span style="color:#366">zip</span>(axes, s1_episodes)):
+    <span style="color:#069;font-weight:bold">with</span> <span style="color:#366">open</span>(<span style="color:#c30">&#39;{}/{}&#39;</span><span style="color:#555">.</span>format(episode_dir, episode), <span style="color:#c30">&#39;r&#39;</span>) <span style="color:#069;font-weight:bold">as</span> f:
+        text <span style="color:#555">=</span> f<span style="color:#555">.</span>read()
+        cleaned_text <span style="color:#555">=</span> clean_text(text)
+        blob <span style="color:#555">=</span> TextBlob(cleaned_text)
+        title <span style="color:#555">=</span> get_episode_title(episode, episode_info<span style="color:#555">=</span>True)
+        
+        episode_polarity <span style="color:#555">=</span> blob<span style="color:#555">.</span>sentiment<span style="color:#555">.</span>polarity
+        s1_episode_polarities[title] <span style="color:#555">=</span> episode_polarity
+        
+        sentence_polarities <span style="color:#555">=</span> get_sentence_polarities(blob)
+        sentence_df <span style="color:#555">=</span> create_sentence_df(sentence_polarities)
+        averaged_polarities <span style="color:#555">=</span> average_over_window(sentence_df, <span style="color:#f60">3</span>)
+
+        fig, ax <span style="color:#555">=</span> create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#39;{}</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span><span style="color:#555">.</span>format(title), fig<span style="color:#555">=</span>fig, ax<span style="color:#555">=</span>ax, episode<span style="color:#555">=</span>True)
+        
+        sent_colors <span style="color:#555">=</span> pd<span style="color:#555">.</span>cut(averaged_polarities[<span style="color:#c30">&#39;polarity&#39;</span>], np<span style="color:#555">.</span>linspace(<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">1</span>, num<span style="color:#555">=</span><span style="color:#f60">21</span>, endpoint<span style="color:#555">=</span>True), 
+                             include_lowest<span style="color:#555">=</span>True, labels<span style="color:#555">=</span>red_gradient <span style="color:#555">+</span> blue_gradient[::<span style="color:#555">-</span><span style="color:#f60">1</span>])
+        
+        ax<span style="color:#555">.</span>bar(averaged_polarities[<span style="color:#c30">&#39;relative_position&#39;</span>], averaged_polarities[<span style="color:#c30">&#39;polarity&#39;</span>], 
+               color<span style="color:#555">=</span>sent_colors, width<span style="color:#555">=.</span><span style="color:#f60">8</span><span style="color:#555">/</span><span style="color:#366">len</span>(averaged_polarities))
+        ax<span style="color:#555">.</span>set_xticklabels([])
+        ax<span style="color:#555">.</span>set_yticks([<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>])
+        
+        <span style="color:#09f;font-style:italic"># write_top_sentences(sentence_file, sentence_df, title)</span>
+        
+<span style="color:#09f;font-style:italic"># sentence_file.close()</span>
+        
+plt<span style="color:#555">.</span>tight_layout() <span style="color:#09f;font-style:italic"># fix overlapping text/labels     </span>
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/master-of-none/output_69_0.png" alt="png" /></p>
+
+<h3 id="season-1-overall-episode-sentiment">Season 1 Overall Episode Sentiment</h3>
+
+<p>The episodes, in order of most to least positive:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Episode|Polarity&#34;</span>)
+<span style="color:#069;font-weight:bold">for</span> ep <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">sorted</span>(s1_episode_polarities, key<span style="color:#555">=</span>s1_episode_polarities<span style="color:#555">.</span>get, reverse<span style="color:#555">=</span>True):
+    polarity <span style="color:#555">=</span> <span style="color:#366">round</span>(s1_episode_polarities[ep], <span style="color:#f60">5</span>)
+    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#39;{}|{}&#39;</span><span style="color:#555">.</span>format(ep, polarity))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Episode|Polarity
+s01e01 Plan B|0.17624
+s01e09 Mornings|0.17505
+s01e06 Nashville|0.15706
+s01e05 The Other Man|0.13835
+s01e10 Finale|0.12934
+s01e04 Indians on TV|0.11561
+s01e03 Hot Ticket|0.1064
+s01e07 Ladies and Gentlemen|0.10614
+s01e02 Parents|0.10543
+s01e08 Old People|0.10252</pre></div>
+<p><a id='season2'></a></p>
+
+<h2 id="season-2">Season 2</h2>
+
+<p>And similar analysis for season 2:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s2_episodes <span style="color:#555">=</span> get_season_episodes(episode_dir, <span style="color:#f60">2</span>)
+s2_episodes <span style="color:#555">=</span> <span style="color:#366">sorted</span>(s2_episodes)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, axes <span style="color:#555">=</span> plt<span style="color:#555">.</span>subplots(figsize<span style="color:#555">=</span>(<span style="color:#f60">15</span>, <span style="color:#f60">30</span>), nrows<span style="color:#555">=</span><span style="color:#f60">10</span>, ncols<span style="color:#555">=</span><span style="color:#f60">1</span>)
+axes <span style="color:#555">=</span> axes<span style="color:#555">.</span>reshape(<span style="color:#555">-</span><span style="color:#f60">1</span>)
+
+s2_episode_polarities <span style="color:#555">=</span> {}
+
+<span style="color:#09f;font-style:italic"># sentence_file = open(&#39;./Master-of-None-sentences.txt&#39;, &#39;a&#39;)</span>
+
+<span style="color:#069;font-weight:bold">for</span> i, (ax, episode) <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>(<span style="color:#366">zip</span>(axes, s2_episodes)):
+    <span style="color:#069;font-weight:bold">with</span> <span style="color:#366">open</span>(<span style="color:#c30">&#39;{}/{}&#39;</span><span style="color:#555">.</span>format(episode_dir, episode), <span style="color:#c30">&#39;r&#39;</span>) <span style="color:#069;font-weight:bold">as</span> f:
+        text <span style="color:#555">=</span> f<span style="color:#555">.</span>read()
+        cleaned_text <span style="color:#555">=</span> clean_text(text)
+        blob <span style="color:#555">=</span> TextBlob(cleaned_text)
+        title <span style="color:#555">=</span> get_episode_title(episode, episode_info<span style="color:#555">=</span>True)
+        
+        episode_polarity <span style="color:#555">=</span> blob<span style="color:#555">.</span>sentiment<span style="color:#555">.</span>polarity
+        s2_episode_polarities[title] <span style="color:#555">=</span> episode_polarity
+        
+        sentence_polarities <span style="color:#555">=</span> get_sentence_polarities(blob)
+        sentence_df <span style="color:#555">=</span> create_sentence_df(sentence_polarities)
+        averaged_polarities <span style="color:#555">=</span> average_over_window(sentence_df, <span style="color:#f60">3</span>)
+
+        fig, ax <span style="color:#555">=</span> create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#39;{}</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span><span style="color:#555">.</span>format(title), fig<span style="color:#555">=</span>fig, ax<span style="color:#555">=</span>ax, episode<span style="color:#555">=</span>True)
+        
+        sent_colors <span style="color:#555">=</span> pd<span style="color:#555">.</span>cut(averaged_polarities[<span style="color:#c30">&#39;polarity&#39;</span>], np<span style="color:#555">.</span>linspace(<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">1</span>, num<span style="color:#555">=</span><span style="color:#f60">21</span>, endpoint<span style="color:#555">=</span>True), 
+                             include_lowest<span style="color:#555">=</span>True, labels<span style="color:#555">=</span>red_gradient <span style="color:#555">+</span> blue_gradient[::<span style="color:#555">-</span><span style="color:#f60">1</span>])
+        
+        ax<span style="color:#555">.</span>bar(averaged_polarities[<span style="color:#c30">&#39;relative_position&#39;</span>], averaged_polarities[<span style="color:#c30">&#39;polarity&#39;</span>], 
+               color<span style="color:#555">=</span>sent_colors, width<span style="color:#555">=.</span><span style="color:#f60">9</span><span style="color:#555">/</span><span style="color:#366">len</span>(averaged_polarities))
+        ax<span style="color:#555">.</span>set_xticklabels([])
+        ax<span style="color:#555">.</span>set_yticks([<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>])
+        
+        <span style="color:#09f;font-style:italic"># write_top_sentences(sentence_file, sentence_df, title)</span>
+        
+<span style="color:#09f;font-style:italic"># sentence_file.close()</span>
+        
+plt<span style="color:#555">.</span>tight_layout() <span style="color:#09f;font-style:italic"># fix overlapping text/labels     </span>
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/master-of-none/output_75_0.png" alt="png" /></p>
+
+<p>Some notes:</p>
+
+<ul>
+<li>Analyzing dialogues doesn&rsquo;t take silence into account - and a lot can be conveyed in silence. For instance, season 2 episode 5 &lsquo;The Dinner Party&rsquo; ends with a silent &amp; sobering long Uber ride home. Yet in the graph, &lsquo;The Dinner Party&rsquo; ends on a positive note because the last dialogue in the episode are of Francesca and Dev saying good night.</li>
+</ul>
+
+<h3 id="season-2-overall-episode-sentiment">Season 2 Overall Episode Sentiment</h3>
+
+<p>The episodes, in order of most to least positive:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Episode|Polarity&#34;</span>)
+<span style="color:#069;font-weight:bold">for</span> ep <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">sorted</span>(s2_episode_polarities, key<span style="color:#555">=</span>s2_episode_polarities<span style="color:#555">.</span>get, reverse<span style="color:#555">=</span>True):
+    polarity <span style="color:#555">=</span> <span style="color:#366">round</span>(s2_episode_polarities[ep], <span style="color:#f60">5</span>)
+    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#39;{}|{}&#39;</span><span style="color:#555">.</span>format(ep, polarity))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Episode|Polarity
+s02e07 Door #3|0.25798
+s02e02 Le Nozze|0.19024
+s02e03 Religion|0.17524
+s02e05 The Dinner Party|0.17257
+s02e09 Amarsi Un Po|0.16332
+s02e04 First Date|0.15358
+s02e01 The Thief|0.1338
+s02e10 Buona Notte|0.13298
+s02e06 New York, I Love You|0.13073
+s02e08 Thanksgiving|0.12602</pre></div>
+<h2 id="comparing-season-1-season-2">Comparing Season 1 &amp; Season 2</h2>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> create_plot(figsize<span style="color:#555">=</span>(<span style="color:#f60">15</span>, <span style="color:#f60">12</span>), title<span style="color:#555">=</span><span style="color:#c30">&#34;Positive Sentiment in Master of None&#34;</span>,
+                      xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Positive Sentiment&#34;</span>)
+
+s1_titles <span style="color:#555">=</span> <span style="color:#366">list</span>(s1_episode_polarities<span style="color:#555">.</span>keys())
+s1_polarities <span style="color:#555">=</span> [s1_episode_polarities[title] <span style="color:#069;font-weight:bold">for</span> title <span style="color:#000;font-weight:bold">in</span> s1_titles]
+s1_titles <span style="color:#555">=</span> [get_episode_title(title, episode_info<span style="color:#555">=</span>False) <span style="color:#069;font-weight:bold">for</span> title <span style="color:#000;font-weight:bold">in</span> s1_titles] <span style="color:#09f;font-style:italic"># no ep info</span>
+
+s2_titles <span style="color:#555">=</span> <span style="color:#366">list</span>(s2_episode_polarities<span style="color:#555">.</span>keys())
+s2_polarities <span style="color:#555">=</span> [s2_episode_polarities[title] <span style="color:#069;font-weight:bold">for</span> title <span style="color:#000;font-weight:bold">in</span> s2_titles]
+s2_titles <span style="color:#555">=</span> [get_episode_title(title, episode_info<span style="color:#555">=</span>False) <span style="color:#069;font-weight:bold">for</span> title <span style="color:#000;font-weight:bold">in</span> s2_titles]
+
+all_titles <span style="color:#555">=</span> s1_titles <span style="color:#555">+</span> s2_titles
+all_height <span style="color:#555">=</span> s1_polarities <span style="color:#555">+</span> s2_polarities
+season <span style="color:#555">=</span> [<span style="color:#f60">1</span> <span style="color:#069;font-weight:bold">for</span> _ <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">range</span>(<span style="color:#f60">10</span>)] <span style="color:#555">+</span> [<span style="color:#f60">2</span> <span style="color:#069;font-weight:bold">for</span> _ <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">range</span>(<span style="color:#f60">10</span>)]
+
+all_colors <span style="color:#555">=</span> blue_gradient <span style="color:#555">+</span> red_gradient[::<span style="color:#555">-</span><span style="color:#f60">1</span>]
+
+<span style="color:#069;font-weight:bold">for</span> title, height, color <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">zip</span>(all_titles, all_height, all_colors):
+    ax<span style="color:#555">.</span>barh(title, height, color<span style="color:#555">=</span>color)  
+    
+ax<span style="color:#555">.</span>spines[<span style="color:#c30">&#39;right&#39;</span>]<span style="color:#555">.</span>set_visible(False) 
+ax<span style="color:#555">.</span>spines[<span style="color:#c30">&#39;top&#39;</span>]<span style="color:#555">.</span>set_visible(False)
+plt<span style="color:#555">.</span>gca()<span style="color:#555">.</span>invert_yaxis()
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/master-of-none/output_80_0.png" alt="png" /></p>
+
+<p>Hmmm, looks like Season 2 is a &lsquo;lil more positive than Season 1 as a whole.</p>
+
+<p>I&rsquo;m just gonna end this with one of my favorite Aziz Ansari scenes / quotes of all time:</p>
+
+<p><img src="http://iruntheinternet.com/lulzdump/images/aziz-ansari-red-carpet-insole-shoe-parks-and-recreation-red-carpet-1360763940f.png?id=" alt="Red Carpet Insole" /></p>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="https://ashleyshine.github.io/posts/fall-2017-analysis/">&laquo; Where Did My Time Go? Fall 2017 Edition</a>
+    
+    
+      <a class="basic-alignment left" href="https://ashleyshine.github.io/posts/strava-viz-running/">Mapping Three Years of Running &raquo;</a>
+    
+  </div>
+</section>
+
+  
+</body>
+</html>
+
+
+

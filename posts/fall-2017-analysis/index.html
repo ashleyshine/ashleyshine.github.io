@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    
+
+    
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+    
+
+    <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon_128x128.png" sizes="128x128">
+
+    <title>
+      
+      
+         Where Did My Time Go? Fall 2017 Edition 
+      
+    </title>
+    <link rel="canonical" href="https://ashleyshine.github.io/posts/fall-2017-analysis/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  #profile img {
+    margin: 50px auto auto auto;
+    max-width: 200px;
+  }
+
+  .left-justify {
+    float: left;
+  }
+
+  .right-justify {
+    float:right;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+    margin-bottom:10px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    color:#1d1313;
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-top: 50px;
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #description p {
+    color: #403c3b;
+    margin: 0 0;
+  } 
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  .entry-content a {
+    color: #2d96bd;
+    text-decoration: none;
+  }
+
+  #archive-item div {
+    padding-top: 0px;
+    padding-bottom: 25px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+</style>
+
+
+    
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">Ashley Shine</a></h1>
+      <ul>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/posts/">Posts</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> Where Did My Time Go? Fall 2017 Edition </h1>
+
+  
+    <div id=sub-header>
+      December 2017 · 17 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    
+
+<p><em>All the <a href="https://github.com/ashleyshine/ticktock">code for this project</a> is available on github.</em></p>
+
+<p><em>&lsquo;Twas the night (ten days) before Christmas&hellip;</em> when I finished fall quarter finals, came home for Winter Break, looked at my calendar, and realized something crazy - I had, for once, free time! To do whatever I wanted! Imagine that. Then I realized I also had something else: because I <a href="http://calnewport.com/blog/2013/12/21/deep-habits-the-importance-of-planning-every-minute-of-your-work-day/">time-block</a> with my calendar (Google Calendar to be specific) in order to plan and protect my time, I had (unknowingly) generated a detailed dataset on how I&rsquo;ve spent my time in over the past year or two.</p>
+
+<p>So I got to thinking - I bet I could pull that data off Google Calendar, wrangle it into a usable format, load it into a dataframe, and find some pretty cool trends in there! Aaaaaand this here is the brainchild of that idea.</p>
+
+<p><em>Some notes:</em></p>
+
+<ul>
+<li>If you&rsquo;re wondering how accurate the data is, since it isn&rsquo;t really possible to perfectly predict how long events will run / how much time needs to be dedicated to a given event - the answer is, to a degree, pretty accurate. I usually plan out my time blocks the day before and adjust them accordingly if I need more time or an event runs long. It helps me keep track of how I&rsquo;ve been spending my time and figure out if I have enough time to /get things done/.</li>
+<li>I&rsquo;ve kept the data local on my computer, since some of it involves other people / details I don&rsquo;t necessarily want to divulge. But instructions on how to get calendar data from gcal (and a script to help do it) can be found in this repo.</li>
+<li>This is just a project for fun / learning purposes that gave me a chance to familiarize myself with some of python&rsquo;s core data science modules.</li>
+</ul>
+
+<h2 id="sections">Sections</h2>
+
+<ul>
+<li><a href="#studying">Study Time Analysis</a></li>
+<li><a href="#workouts">Checking out those Workouts</a></li>
+<li><a href="#social">Social (aka Mock Trial)</a></li>
+<li><a href="#work">Work</a></li>
+<li><a href="#all">Bringin&rsquo; it all together</a></li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pandas</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pd</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">numpy</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">np</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">mpl</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
+<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">scipy.interpolate</span> <span style="color:#069;font-weight:bold">import</span> spline
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">datetime</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">dt</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">calendar</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">re</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">warnings</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">ticktock</span>
+
+<span style="color:#555">%</span>matplotlib inline
+warnings<span style="color:#555">.</span>filterwarnings(<span style="color:#c30">&#34;ignore&#34;</span>, category<span style="color:#555">=</span><span style="color:#c00;font-weight:bold">DeprecationWarning</span>) <span style="color:#09f;font-style:italic"># for spline</span></code></pre></div>
+<h2 id="reading-in-data">Reading in Data</h2>
+
+<p>Starting with general data - day-to-day stuff.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data_path <span style="color:#555">=</span> <span style="color:#c30">&#34;./Fall-2017-Data/&#34;</span>
+all_data <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(data_path <span style="color:#555">+</span> <span style="color:#c30">&#34;general.csv&#34;</span>, skiprows<span style="color:#555">=</span><span style="color:#f60">1</span>,
+                       names<span style="color:#555">=</span>[<span style="color:#c30">&#34;Event&#34;</span>, <span style="color:#c30">&#34;Start_time&#34;</span>, <span style="color:#c30">&#34;End_time&#34;</span>])</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">all_data<span style="color:#555">.</span>info()</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 1302 entries, 0 to 1301
+Data columns (total 3 columns):
+Event         1302 non-null object
+Start_time    1302 non-null object
+End_time      1302 non-null object
+dtypes: object(3)
+memory usage: 30.6+ KB</pre></div>
+<p>An example of what we&rsquo;ve got - these last few events are all for studying, since that&rsquo;s basically all I did for the last week of the quarter before winter break.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">all_data<span style="color:#555">.</span>iloc[<span style="color:#555">-</span><span style="color:#f60">20</span>:<span style="color:#555">-</span><span style="color:#f60">15</span>]</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Event</th>
+      <th>Start_time</th>
+      <th>End_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1282</th>
+      <td>Study - Stats</td>
+      <td>2017-12-12 16:00:00+00:00</td>
+      <td>2017-12-12 19:15:00+00:00</td>
+    </tr>
+    <tr>
+      <th>1283</th>
+      <td>Study - Stats</td>
+      <td>2017-12-12 20:30:00+00:00</td>
+      <td>2017-12-12 22:15:00+00:00</td>
+    </tr>
+    <tr>
+      <th>1284</th>
+      <td>Study - Stats</td>
+      <td>2017-12-13 02:30:00+00:00</td>
+      <td>2017-12-13 04:30:00+00:00</td>
+    </tr>
+    <tr>
+      <th>1285</th>
+      <td>Study - Math</td>
+      <td>2017-12-13 13:30:00+00:00</td>
+      <td>2017-12-13 15:00:00+00:00</td>
+    </tr>
+    <tr>
+      <th>1286</th>
+      <td>Study - Math</td>
+      <td>2017-12-14 00:30:00+00:00</td>
+      <td>2017-12-14 01:30:00+00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">all_data <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>convert_columns(all_data)</code></pre></div>
+<h2 id="filter-data-by-date">Filter data by date</h2>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">all_data[<span style="color:#c30">&#39;Start_time&#39;</span>]<span style="color:#555">.</span><span style="color:#366">min</span>(), all_data[<span style="color:#c30">&#39;End_time&#39;</span>]<span style="color:#555">.</span><span style="color:#366">max</span>()</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">(Timestamp(&#39;2009-06-08 23:00:00&#39;), Timestamp(&#39;2018-09-19 16:45:00&#39;))</pre></div>
+<p>Our data ranges from June 2009 to September 2018 (future events). I&rsquo;m interested in Fall Quarter 2017, which started on September 25, 2017 and ended on December 15, 2017. I&rsquo;m gonna go ahead and grab that data.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#09f;font-style:italic"># start and end dates for UCLA Fall 2017 quarter</span>
+fall_2017_start <span style="color:#555">=</span> <span style="color:#c30">&#34;09/25/2017&#34;</span>
+fall_2017_end <span style="color:#555">=</span> <span style="color:#c30">&#34;12/16/2017&#34;</span>
+
+general <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>filter_by_date(all_data, fall_2017_start, fall_2017_end)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">general<span style="color:#555">.</span>shape</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">(210, 3)</pre></div>
+<p>Look&rsquo;s like we&rsquo;ve got 210 events from Fall Quarter.</p>
+
+<p>I&rsquo;m interested in how long events are - let&rsquo;s create a column for that.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">general<span style="color:#555">.</span>is_copy <span style="color:#555">=</span> False <span style="color:#09f;font-style:italic"># avoid SettingWithCopyWarning</span>
+
+general[<span style="color:#c30">&#39;total_time&#39;</span>] <span style="color:#555">=</span> general<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>total_time(x), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)</code></pre></div>
+<p><a id='studying'></a></p>
+
+<h1 id="study-analysis">Study Analysis</h1>
+
+<p>I took three classes this quarter:</p>
+
+<ul>
+<li>MATH 131A Analysis</li>
+<li>STATS 101A Introduction to Data Analysis and Regression</li>
+<li>FILM TV 6A History of the American Motion Picture</li>
+</ul>
+
+<p>Gonna create some columns to indicate whether an event is about studying math, stats, or film.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">general<span style="color:#555">.</span>is_copy <span style="color:#555">=</span> False <span style="color:#09f;font-style:italic"># avoid SettingWithCopyWarning</span>
+
+study_math <span style="color:#555">=</span> general<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>is_studying(x[<span style="color:#c30">&#39;Event&#39;</span>], <span style="color:#c30">&#34;Math&#34;</span>), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+general[<span style="color:#c30">&#39;Studying_Math&#39;</span>] <span style="color:#555">=</span> study_math
+
+study_stats <span style="color:#555">=</span> general<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>is_studying(x[<span style="color:#c30">&#39;Event&#39;</span>], <span style="color:#c30">&#34;Stats&#34;</span>), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+general[<span style="color:#c30">&#39;Studying_Stats&#39;</span>] <span style="color:#555">=</span> study_stats
+
+study_film <span style="color:#555">=</span> general<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>is_studying(x[<span style="color:#c30">&#39;Event&#39;</span>], <span style="color:#c30">&#34;Film&#34;</span>), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+general[<span style="color:#c30">&#39;Studying_Film&#39;</span>] <span style="color:#555">=</span> study_film</code></pre></div>
+<h2 id="big-picture-view-how-much-time-did-i-spend-studying-each-subject">Big picture view: how much time did I spend studying each subject?</h2>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">math_hours <span style="color:#555">=</span> general<span style="color:#555">.</span>loc[general[<span style="color:#c30">&#39;Studying_Math&#39;</span>], <span style="color:#c30">&#39;total_time&#39;</span>]<span style="color:#555">.</span><span style="color:#366">sum</span>()
+stats_hours <span style="color:#555">=</span> general<span style="color:#555">.</span>loc[general[<span style="color:#c30">&#39;Studying_Stats&#39;</span>], <span style="color:#c30">&#39;total_time&#39;</span>]<span style="color:#555">.</span><span style="color:#366">sum</span>()
+film_hours <span style="color:#555">=</span> general<span style="color:#555">.</span>loc[general[<span style="color:#c30">&#39;Studying_Film&#39;</span>], <span style="color:#c30">&#39;total_time&#39;</span>]<span style="color:#555">.</span><span style="color:#366">sum</span>()
+
+<span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Total time spent studying MATH 131A: {}&#34;</span><span style="color:#555">.</span>format(math_hours))
+<span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Total time spent studying STATS 101A: {}&#34;</span><span style="color:#555">.</span>format(stats_hours))
+<span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Total time spent studying FILM TV 6A: {}&#34;</span><span style="color:#555">.</span>format(film_hours))
+
+subjects <span style="color:#555">=</span> [<span style="color:#c30">&#34;MATH 131A&#34;</span>, <span style="color:#c30">&#34;STATS 101A&#34;</span>, <span style="color:#c30">&#34;FILM TV 6A&#34;</span>]
+total_times <span style="color:#555">=</span> [math_hours, stats_hours, film_hours]
+
+<span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Total time studying all subjects: {}&#34;</span><span style="color:#555">.</span>format(<span style="color:#366">sum</span>(total_times)))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Total time spent studying MATH 131A: 67.5
+Total time spent studying STATS 101A: 77.5
+Total time spent studying FILM TV 6A: 27.0
+Total time studying all subjects: 172.0</pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#09f;font-style:italic"># set matplotlib parameters</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;axes.titlesize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">18</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;axes.labelsize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">14</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;legend.fontsize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">14</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;xtick.labelsize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">12</span>
+mpl<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;ytick.labelsize&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">12</span>
+
+plt<span style="color:#555">.</span>style<span style="color:#555">.</span>use(<span style="color:#c30">&#39;seaborn-darkgrid&#39;</span>)
+
+tropical_colors <span style="color:#555">=</span> [<span style="color:#c30">&#34;#3D84A8&#34;</span>, <span style="color:#c30">&#34;#FF7E67&#34;</span>, <span style="color:#c30">&#34;#FFB400&#34;</span>]</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(figsize<span style="color:#555">=</span>(<span style="color:#f60">10</span>, <span style="color:#f60">6</span>), title<span style="color:#555">=</span><span style="color:#c30">&#34;Total Study Time by Subject&#34;</span>, 
+                               xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Subject&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>)
+
+g <span style="color:#555">=</span> ax<span style="color:#555">.</span>bar(subjects, total_times, color<span style="color:#555">=</span>tropical_colors, alpha<span style="color:#555">=</span><span style="color:#f60">0.9</span>)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_22_0.png" alt="png" /></p>
+
+<p>Bummer, looks like FILM TV 6A didn&rsquo;t get even half as much love as MATH 131A or STATS 101A did.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#09f;font-style:italic"># change index to day of event</span>
+general <span style="color:#555">=</span> general<span style="color:#555">.</span>set_index([<span style="color:#c30">&#39;Start_time&#39;</span>])
+general<span style="color:#555">.</span>index <span style="color:#555">=</span> general<span style="color:#555">.</span>index<span style="color:#555">.</span>date</code></pre></div>
+<p>Here&rsquo;s what our dataframe looks like now:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">general<span style="color:#555">.</span>tail()</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Event</th>
+      <th>End_time</th>
+      <th>total_time</th>
+      <th>Studying_Math</th>
+      <th>Studying_Stats</th>
+      <th>Studying_Film</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-12-15</th>
+      <td>Study - Stats</td>
+      <td>2017-12-15 03:00:00</td>
+      <td>0.50</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2017-12-15</th>
+      <td>Study - Math</td>
+      <td>2017-12-15 04:00:00</td>
+      <td>0.75</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2017-12-15</th>
+      <td>Study - Math</td>
+      <td>2017-12-15 15:00:00</td>
+      <td>0.50</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2017-12-15</th>
+      <td>Study - Math</td>
+      <td>2017-12-15 18:45:00</td>
+      <td>2.75</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2017-12-15</th>
+      <td>Study - Math</td>
+      <td>2017-12-15 21:15:00</td>
+      <td>1.25</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="studying-trends">Studying Trends</h2>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">math_data <span style="color:#555">=</span> general<span style="color:#555">.</span>loc[general[<span style="color:#c30">&#39;Studying_Math&#39;</span>], :]
+stats_data <span style="color:#555">=</span> general<span style="color:#555">.</span>loc[general[<span style="color:#c30">&#39;Studying_Stats&#39;</span>], :]
+film_data <span style="color:#555">=</span> general<span style="color:#555">.</span>loc[general[<span style="color:#c30">&#39;Studying_Film&#39;</span>], :]
+all_studying_data <span style="color:#555">=</span> general<span style="color:#555">.</span>loc[(general[<span style="color:#c30">&#39;Studying_Film&#39;</span>] <span style="color:#555">|</span> general[<span style="color:#c30">&#39;Studying_Math&#39;</span>] \
+                                    <span style="color:#555">|</span> general[<span style="color:#c30">&#39;Studying_Stats&#39;</span>]), :]
+
+math_by_day <span style="color:#555">=</span> math_data<span style="color:#555">.</span>groupby(math_data<span style="color:#555">.</span>index)<span style="color:#555">.</span><span style="color:#366">sum</span>()
+stats_by_day <span style="color:#555">=</span> stats_data<span style="color:#555">.</span>groupby(stats_data<span style="color:#555">.</span>index)<span style="color:#555">.</span><span style="color:#366">sum</span>()
+film_by_day <span style="color:#555">=</span> film_data<span style="color:#555">.</span>groupby(film_data<span style="color:#555">.</span>index)<span style="color:#555">.</span><span style="color:#366">sum</span>()
+all_studying_data <span style="color:#555">=</span> all_studying_data<span style="color:#555">.</span>groupby(all_studying_data<span style="color:#555">.</span>index)<span style="color:#555">.</span><span style="color:#366">sum</span>()</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Time Spent Studying over Fall 2017&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Date&#34;</span>)
+
+ax<span style="color:#555">.</span>plot(all_studying_data[<span style="color:#c30">&#39;total_time&#39;</span>], color<span style="color:#555">=</span>tropical_colors[<span style="color:#f60">0</span>]);
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_29_0.png" alt="png" /></p>
+
+<h3 id="breaking-it-down-by-subject">Breaking it down by subject</h3>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Study Time by Subject&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Date&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>)
+
+<span style="color:#069;font-weight:bold">for</span> i, ts <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>([math_by_day, stats_by_day, film_by_day]):
+    ax<span style="color:#555">.</span>plot(ts[<span style="color:#c30">&#39;total_time&#39;</span>], color<span style="color:#555">=</span>tropical_colors[i])
+    
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#39;MATH 131A&#39;</span>, <span style="color:#c30">&#39;STATS 101A&#39;</span>, <span style="color:#c30">&#39;FILM TV 6A&#39;</span>])
+
+arrowprops <span style="color:#555">=</span> <span style="color:#366">dict</span>(facecolor<span style="color:#555">=</span><span style="color:#c30">&#39;black&#39;</span>, shrink<span style="color:#555">=</span><span style="color:#f60">0.05</span>, width<span style="color:#555">=</span><span style="color:#f60">1</span>, headwidth<span style="color:#555">=</span><span style="color:#f60">10</span>)
+text <span style="color:#555">=</span> {
+    <span style="color:#f60">1</span>: <span style="color:#c30">&#39;Midterms&#39;</span>,
+    <span style="color:#f60">2</span>: <span style="color:#c30">&#39;Final Exams&#39;</span>,
+    <span style="color:#f60">3</span>: <span style="color:#c30">&#39;Film Paper Due&#39;</span>,
+    <span style="color:#f60">4</span>: <span style="color:#c30">&#39;Nashville</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">Tournament&#39;</span>,
+    <span style="color:#f60">5</span>: <span style="color:#c30">&#39;Arizona</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">Tournament&#39;</span>
+}
+text_coordinates <span style="color:#555">=</span> {
+    <span style="color:#f60">1</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">11</span>, <span style="color:#f60">2</span>), <span style="color:#f60">7</span>),
+    <span style="color:#f60">2</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">11</span>, <span style="color:#f60">28</span>), <span style="color:#f60">7</span>),
+    <span style="color:#f60">3</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">10</span>, <span style="color:#f60">15</span>), <span style="color:#f60">4</span>),
+    <span style="color:#f60">4</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">11</span>, <span style="color:#f60">7</span>), <span style="color:#f60">4</span>),
+    <span style="color:#f60">5</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">11</span>, <span style="color:#f60">17</span>), <span style="color:#f60">4.5</span>)
+}
+arrow_coordinates <span style="color:#555">=</span> {
+    <span style="color:#f60">1</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">11</span>, <span style="color:#f60">2</span>), <span style="color:#f60">5.5</span>), 
+    <span style="color:#f60">2</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">12</span>, <span style="color:#f60">8</span>), <span style="color:#f60">6.5</span>),
+    <span style="color:#f60">3</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">10</span>, <span style="color:#f60">25</span>), <span style="color:#f60">1.5</span>),
+    <span style="color:#f60">4</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">11</span>, <span style="color:#f60">4</span>), <span style="color:#f60">2</span>),
+    <span style="color:#f60">5</span>: (dt<span style="color:#555">.</span>datetime(<span style="color:#f60">2017</span>, <span style="color:#f60">11</span>, <span style="color:#f60">11</span>), <span style="color:#f60">3</span>)
+}
+
+<span style="color:#069;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> text:
+    ax<span style="color:#555">.</span>annotate(text[i], size<span style="color:#555">=</span><span style="color:#f60">14</span>, horizontalalignment<span style="color:#555">=</span><span style="color:#c30">&#39;center&#39;</span>,xytext<span style="color:#555">=</span>text_coordinates[i],
+                xy<span style="color:#555">=</span>arrow_coordinates[i], arrowprops<span style="color:#555">=</span>arrowprops)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_31_0.png" alt="png" /></p>
+
+<p>Some observations:</p>
+
+<ul>
+<li>Time spent on my film class was pretty spikey (at least, a little less consistent than math or stats). I&rsquo;d usually spend a ton of time before papers &amp; exams, then neglect it for a bit. I liked the class, but it was never my top priority.</li>
+<li>There&rsquo;s a big &lsquo;ol valley in studying in the first two weeks of November, when I spent a ton of time preparing for / traveling for mock trial tournaments.</li>
+</ul>
+
+<h3 id="week-by-week-analysis">Week-by-Week Analysis</h3>
+
+<p>Life in the quarter system tends to happen in weeks - 10 weeks in a quarter plus finals week (week 11). Bet I can find some weekly trends, so I&rsquo;m gonna go ahead and group by data by week.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">math_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(math_data, fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)
+stats_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(stats_data, fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)
+film_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(film_data, fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)
+all_studying_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(all_studying_data, fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Study Time by Subject&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>)
+
+<span style="color:#069;font-weight:bold">for</span> i, ts <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>([math_by_week, stats_by_week, film_by_week]):
+    ax<span style="color:#555">.</span>plot(ts[<span style="color:#c30">&#39;total_time&#39;</span>], color<span style="color:#555">=</span>tropical_colors[i]);
+
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#39;MATH 131A&#39;</span>, <span style="color:#c30">&#39;STATS 101A&#39;</span>, <span style="color:#c30">&#39;FILM TV 6A&#39;</span>])
+ax<span style="color:#555">.</span>set_xticks(<span style="color:#366">range</span>(<span style="color:#f60">12</span>))
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_35_0.png" alt="png" /></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Total Study Time&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>)
+
+ax<span style="color:#555">.</span>bar(x<span style="color:#555">=</span>all_studying_by_week<span style="color:#555">.</span>index, height<span style="color:#555">=</span>all_studying_by_week[<span style="color:#c30">&#39;total_time&#39;</span>], color<span style="color:#555">=</span>tropical_colors[<span style="color:#f60">1</span>]);
+ax<span style="color:#555">.</span>set_xticks(all_studying_by_week<span style="color:#555">.</span>index)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_36_0.png" alt="png" /></p>
+
+<p>Let&rsquo;s break it down by subject.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Study Time by Subject&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>)
+
+floor <span style="color:#555">=</span> pd<span style="color:#555">.</span>Series(<span style="color:#f60">0</span>, index<span style="color:#555">=</span><span style="color:#366">range</span>(<span style="color:#f60">12</span>)) <span style="color:#09f;font-style:italic"># where the next bar chart should start</span>
+    
+<span style="color:#069;font-weight:bold">for</span> i, subject <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>([math_by_week, stats_by_week, film_by_week]):
+    ax<span style="color:#555">.</span>bar(x<span style="color:#555">=</span>subject<span style="color:#555">.</span>index, height<span style="color:#555">=</span>subject[<span style="color:#c30">&#39;total_time&#39;</span>], linewidth<span style="color:#555">=</span><span style="color:#f60">0</span>, 
+           bottom<span style="color:#555">=</span>floor[subject<span style="color:#555">.</span>index], color<span style="color:#555">=</span>tropical_colors[i]);
+    <span style="color:#069;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> subject<span style="color:#555">.</span>index: 
+        floor[i] <span style="color:#555">+=</span> subject<span style="color:#555">.</span>loc[i][<span style="color:#c30">&#39;total_time&#39;</span>] <span style="color:#09f;font-style:italic"># gotta do it this way to avoid NaNs</span>
+
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#39;MATH 131A&#39;</span>, <span style="color:#c30">&#39;STATS 101A&#39;</span>, <span style="color:#c30">&#39;FILM TV 6A&#39;</span>])
+ax<span style="color:#555">.</span>set_xticks(all_studying_by_week<span style="color:#555">.</span>index)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_38_0.png" alt="png" /></p>
+
+<ul>
+<li>Looks like the only studying I did in Week 3 was for my film class. I had a paper due that week.</li>
+<li>There&rsquo;s a peak in the middle of the quarter of Week 5 - that week I had midterms in all three classes.</li>
+<li>I did the least studying overall in Week 6, which makes sense. I had mock trial tournaments on the weekends going into and coming out of that week.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Study Time by Subject&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hourse&#34;</span>)
+
+<span style="color:#069;font-weight:bold">for</span> i, subject <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>([math_by_week, stats_by_week, film_by_week]):
+    ax<span style="color:#555">.</span>bar(x<span style="color:#555">=</span>subject<span style="color:#555">.</span>index<span style="color:#555">-</span><span style="color:#f60">0.3</span> <span style="color:#555">+</span> i<span style="color:#555">*</span><span style="color:#f60">0.3</span>, height<span style="color:#555">=</span>subject[<span style="color:#c30">&#39;total_time&#39;</span>], width<span style="color:#555">=</span><span style="color:#f60">0.3</span>, 
+           color<span style="color:#555">=</span>tropical_colors[i])
+
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#39;MATH 131A&#39;</span>, <span style="color:#c30">&#39;STATS 101A&#39;</span>, <span style="color:#c30">&#39;FILM TV 6A&#39;</span>])
+ax<span style="color:#555">.</span>set_xticks(all_studying_by_week<span style="color:#555">.</span>index)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_40_0.png" alt="png" /></p>
+
+<h3 id="weekday-analysis">Weekday Analysis</h3>
+
+<p>I bet there are some trends in my studying patterns over the weekday.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#09f;font-style:italic"># reindex by weekday name to get correct order of Monday - Sunday</span>
+studying_by_weekday <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_weekday(all_studying_data)<span style="color:#555">.</span>reindex(calendar<span style="color:#555">.</span>day_name)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Average Study Hours by Day&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Day&#34;</span>,
+                      ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>)
+
+<span style="color:#09f;font-style:italic"># trying to plot using ax.Bar() was more pain than it was worth trying to order the days</span>
+studying_by_weekday<span style="color:#555">.</span>plot(kind<span style="color:#555">=</span><span style="color:#c30">&#39;bar&#39;</span>, color<span style="color:#555">=</span>tropical_colors[<span style="color:#f60">0</span>], rot<span style="color:#555">=</span><span style="color:#f60">0</span>)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_43_0.png" alt="png" /></p>
+
+<ul>
+<li>I got the least amount of studying done on Mondays, Tuesdays, &amp; Thursdays - these are the days I worked. I&rsquo;m actually pretty surprised I studied an average of 2.75 or so hours on Thursdays, since I worked a full 8 hours on those days too.</li>
+<li>Got the most studying done on Wednesdays. These were my mid-week &ldquo;get things done before they&rsquo;re due on Friday&rdquo; sessions. I am surprised that my average studying on Wednesdays is higher than on weekends, since I had class for half the day on Wednesday too. But it might make sense given that my weekends were often taken up my tournaments / social stuff.</li>
+</ul>
+
+<p><a id='workouts'></a></p>
+
+<h1 id="workouts">Workouts</h1>
+
+<p><em>a.k.a. how I stay sane when things get busy</em></p>
+
+<h2 id="processing-stuff">Processing Stuff</h2>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">all_workouts <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(data_path <span style="color:#555">+</span> <span style="color:#c30">&#34;exercise.csv&#34;</span>, skiprows<span style="color:#555">=</span><span style="color:#f60">1</span>, 
+                           names<span style="color:#555">=</span>[<span style="color:#c30">&#34;Event&#34;</span>, <span style="color:#c30">&#34;Start_time&#34;</span>, <span style="color:#c30">&#34;End_time&#34;</span>])
+
+all_workouts <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>convert_columns(all_workouts)
+workouts <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>filter_by_date(all_workouts, fall_2017_start, fall_2017_end)
+
+workouts<span style="color:#555">.</span>shape</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">(37, 3)</pre></div>
+<p>Here&rsquo;s a slice of what we&rsquo;re looking at:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">workouts<span style="color:#555">.</span>tail()</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Event</th>
+      <th>Start_time</th>
+      <th>End_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>323</th>
+      <td>5.5 mile run</td>
+      <td>2017-12-08 23:45:00</td>
+      <td>2017-12-09 00:45:00</td>
+    </tr>
+    <tr>
+      <th>324</th>
+      <td>5.5 mile run</td>
+      <td>2017-12-09 23:45:00</td>
+      <td>2017-12-10 00:45:00</td>
+    </tr>
+    <tr>
+      <th>325</th>
+      <td>5.5 mile run</td>
+      <td>2017-12-11 00:00:00</td>
+      <td>2017-12-11 01:00:00</td>
+    </tr>
+    <tr>
+      <th>326</th>
+      <td>4 mile run</td>
+      <td>2017-12-12 00:15:00</td>
+      <td>2017-12-12 01:00:00</td>
+    </tr>
+    <tr>
+      <th>327</th>
+      <td>5.5 mile run</td>
+      <td>2017-12-14 23:45:00</td>
+      <td>2017-12-15 00:45:00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">workouts<span style="color:#555">.</span>is_copy <span style="color:#555">=</span> False <span style="color:#09f;font-style:italic"># avoid SettingWithCopyWarning</span>
+
+workouts[<span style="color:#c30">&#39;total_time&#39;</span>] <span style="color:#555">=</span> workouts<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>total_time(x), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)</code></pre></div>
+<p>Gonna create some columns to tell us whether an event is a run or a swim.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">workouts<span style="color:#555">.</span>is_copy <span style="color:#555">=</span> False <span style="color:#09f;font-style:italic"># avoid SettingWithCopyWarning</span>
+
+run <span style="color:#555">=</span> workouts<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>is_workout(x[<span style="color:#c30">&#39;Event&#39;</span>], <span style="color:#c30">&#34;run&#34;</span>), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+workouts[<span style="color:#c30">&#39;Run&#39;</span>] <span style="color:#555">=</span> run
+
+swim <span style="color:#555">=</span> workouts<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>is_workout(x[<span style="color:#c30">&#39;Event&#39;</span>], <span style="color:#c30">&#34;swim&#34;</span>), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+workouts[<span style="color:#c30">&#39;Swim&#39;</span>] <span style="color:#555">=</span> swim</code></pre></div>
+<p>If it&rsquo;s a run, I wanna know how long it was. Luckily for me, I also included how long each run was in the event description <em>(who knew! past me sure was making things handy for future me. wow.)</em></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">run_length <span style="color:#555">=</span> workouts<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>run_length(x[<span style="color:#c30">&#39;Event&#39;</span>]), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+workouts[<span style="color:#c30">&#39;Run_length&#39;</span>] <span style="color:#555">=</span> run_length</code></pre></div>
+<p>Finally, I&rsquo;m gonna change the index to the date of the event.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">workouts <span style="color:#555">=</span> workouts<span style="color:#555">.</span>set_index([<span style="color:#c30">&#39;Start_time&#39;</span>]) <span style="color:#09f;font-style:italic"># change index to date</span>
+workouts<span style="color:#555">.</span>index <span style="color:#555">=</span> workouts<span style="color:#555">.</span>index<span style="color:#555">.</span>date
+
+workouts <span style="color:#555">=</span> workouts<span style="color:#555">.</span>drop(columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;End_time&#39;</span>])
+workouts<span style="color:#555">.</span>tail()</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Event</th>
+      <th>total_time</th>
+      <th>Run</th>
+      <th>Swim</th>
+      <th>Run_length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-12-08</th>
+      <td>5.5 mile run</td>
+      <td>1.00</td>
+      <td>True</td>
+      <td>False</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <th>2017-12-09</th>
+      <td>5.5 mile run</td>
+      <td>1.00</td>
+      <td>True</td>
+      <td>False</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <th>2017-12-11</th>
+      <td>5.5 mile run</td>
+      <td>1.00</td>
+      <td>True</td>
+      <td>False</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <th>2017-12-12</th>
+      <td>4 mile run</td>
+      <td>0.75</td>
+      <td>True</td>
+      <td>False</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>2017-12-14</th>
+      <td>5.5 mile run</td>
+      <td>1.00</td>
+      <td>True</td>
+      <td>False</td>
+      <td>5.5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>There&rsquo;s some missing data - specifically, there are three events at the end of October that are missing. Since this is a relatively small dataset and it&rsquo;s only three events, I&rsquo;m gonna go ahead and add those in manually.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">missing_workouts <span style="color:#555">=</span> pd<span style="color:#555">.</span>DataFrame([
+    [dt<span style="color:#555">.</span>date(<span style="color:#f60">2017</span>, <span style="color:#f60">10</span>, <span style="color:#f60">25</span>), <span style="color:#c30">&#34;Swim&#34;</span>, False, True, <span style="color:#f60">0</span>, <span style="color:#f60">1.0</span>],
+    [dt<span style="color:#555">.</span>date(<span style="color:#f60">2017</span>, <span style="color:#f60">10</span>, <span style="color:#f60">26</span>), <span style="color:#c30">&#34;Swim&#34;</span>, False, True, <span style="color:#f60">0</span>, <span style="color:#f60">1.0</span>],
+    [dt<span style="color:#555">.</span>date(<span style="color:#f60">2017</span>, <span style="color:#f60">10</span>, <span style="color:#f60">27</span>), <span style="color:#c30">&#34;5.5 mile run&#34;</span>, True, False, <span style="color:#f60">5.5</span>, <span style="color:#f60">1.0</span>]],
+    columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;Date&#39;</span>, <span style="color:#c30">&#39;Event&#39;</span>, <span style="color:#c30">&#39;Run&#39;</span>, <span style="color:#c30">&#39;Swim&#39;</span>, <span style="color:#c30">&#39;Run_length&#39;</span>, <span style="color:#c30">&#39;total_time&#39;</span>])<span style="color:#555">.</span>set_index(<span style="color:#c30">&#39;Date&#39;</span>)
+
+workouts <span style="color:#555">=</span> workouts<span style="color:#555">.</span>append(missing_workouts)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">n_swims <span style="color:#555">=</span> workouts[<span style="color:#c30">&#39;Swim&#39;</span>]<span style="color:#555">.</span><span style="color:#366">sum</span>()
+n_runs <span style="color:#555">=</span> workouts[<span style="color:#c30">&#39;Run&#39;</span>]<span style="color:#555">.</span><span style="color:#366">sum</span>()
+total_miles <span style="color:#555">=</span> workouts[<span style="color:#c30">&#39;Run_length&#39;</span>]<span style="color:#555">.</span><span style="color:#366">sum</span>()
+
+<span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Number of swims: {}&#34;</span><span style="color:#555">.</span>format(n_swims))
+<span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Number of runs: {}&#34;</span><span style="color:#555">.</span>format(n_runs))
+<span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Total number of miles run: {}&#34;</span><span style="color:#555">.</span>format(total_miles))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Number of swims: 18
+Number of runs: 22
+Total number of miles run: 116.0</pre></div>
+<h3 id="trends-over-the-quarter">Trends Over the Quarter</h3>
+
+<p>Let&rsquo;s check out the number of workouts per week first.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">workouts_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(workouts, fall_2017_start, <span style="color:#c30">&#34;size&#34;</span>) <span style="color:#09f;font-style:italic"># holds counts</span>
+
+<span style="color:#09f;font-style:italic"># gonna use this later for time analysis using every category</span>
+workout_time_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(workouts, fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Number of Workouts by Week&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>,
+                               ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Number of Workouts&#34;</span>)
+
+ax<span style="color:#555">.</span>bar(x<span style="color:#555">=</span>workouts_by_week<span style="color:#555">.</span>index, height<span style="color:#555">=</span>workouts_by_week, color<span style="color:#555">=</span>tropical_colors[<span style="color:#f60">1</span>]);
+ax<span style="color:#555">.</span>set_xticks(<span style="color:#366">range</span>(<span style="color:#f60">12</span>))
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_63_0.png" alt="png" /></p>
+
+<ul>
+<li>Looks like I managed to get the most number of runs and swims in in the beginning of the quarter, before things got busy.</li>
+<li>Theres a dip in the middle of the quarter - around the time I started having midterms. And then there are no workouts in Week 6 (oops) when I had back-to-back tournaments.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">workouts_by_weekday <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_weekday(workouts, function<span style="color:#555">=</span><span style="color:#c30">&#34;size&#34;</span>)<span style="color:#555">.</span>reindex(calendar<span style="color:#555">.</span>day_name)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Total Number of Workouts by Day&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Day&#34;</span>,
+                               ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Total Number of Workouts&#34;</span>)
+
+workouts_by_weekday<span style="color:#555">.</span>plot(kind<span style="color:#555">=</span><span style="color:#c30">&#39;bar&#39;</span>, color<span style="color:#555">=</span>tropical_colors[<span style="color:#f60">0</span>], rot<span style="color:#555">=</span><span style="color:#f60">0</span>)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_66_0.png" alt="png" /></p>
+
+<p>Let&rsquo;s check out how the frequency of my runs and swims changed over the quarter.</p>
+
+<h3 id="the-road-to-recovery">The Road to Recovery</h3>
+
+<p>I injured myself running in spring 2017, so for the second half of 2017 I swam a lot for my workouts. Towards the end of summer 2017, I was finally able to start slowly incorporating runs back into my routine. I bet we can see some of these trends in the data.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">swims_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(workouts[<span style="color:#c30">&#39;Swim&#39;</span>], fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)
+runs_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(workouts[<span style="color:#c30">&#39;Run&#39;</span>], fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Workouts Over Fall Quarter 2017&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>,
+                               ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Number of Workouts&#34;</span>)
+
+<span style="color:#069;font-weight:bold">for</span> i, ts <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>([runs_by_week, swims_by_week]):
+    ax<span style="color:#555">.</span>plot(ts, color<span style="color:#555">=</span>tropical_colors[i]);
+
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#39;Runs&#39;</span>, <span style="color:#c30">&#39;Swims&#39;</span>])
+ax<span style="color:#555">.</span>set_xticks(<span style="color:#366">range</span>(<span style="color:#f60">12</span>))
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_69_0.png" alt="png" /></p>
+
+<p>Trends:</p>
+
+<ul>
+<li>I started off the quarter mostly swimming for my workouts.</li>
+<li>The frequency of my swims decreased as the frequency of my runs increased. There are a few weeks where I was switching off between the two to make sure I didn&rsquo;t injure myself running again.</li>
+<li>After week 5, I only ran for my workouts. At this point, I felt strong enough to just run with rest days. It was also getting cold enough in the evenings that the appeal of going for a run was far greater than the not-so-great appeal of going for a swim.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">miles_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(workouts[<span style="color:#c30">&#39;Run_length&#39;</span>], fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Miles Run per Week&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Miles&#34;</span>)
+
+ax<span style="color:#555">.</span>plot(miles_by_week, color<span style="color:#555">=</span>tropical_colors[<span style="color:#f60">0</span>]);
+ax<span style="color:#555">.</span>set_xticks(<span style="color:#366">range</span>(<span style="color:#f60">12</span>))
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_72_0.png" alt="png" /></p>
+
+<p>Yup, as the quarter progressed  - and as I started running more frequently and going for longer runs, my per-week mileage increased as well.</p>
+
+<p><em>(I love running a loooooot more than I like swimming.)</em></p>
+
+<p><a id='social'></a></p>
+
+<h1 id="social">Social</h1>
+
+<p>These are the events on my calendar that include: brunch &amp; dinner with friends, general hanging out stuff, and lots and lots of mock trial practices.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">all_social <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(data_path <span style="color:#555">+</span> <span style="color:#c30">&#34;social.csv&#34;</span>, skiprows<span style="color:#555">=</span><span style="color:#f60">1</span>,
+                     names<span style="color:#555">=</span>[<span style="color:#c30">&#34;Event&#34;</span>, <span style="color:#c30">&#34;Start_time&#34;</span>, <span style="color:#c30">&#34;End_time&#34;</span>])
+
+all_social <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>convert_columns(all_social)
+social <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>filter_by_date(all_social, fall_2017_start, fall_2017_end)
+
+social<span style="color:#555">.</span>is_copy <span style="color:#555">=</span> False <span style="color:#09f;font-style:italic"># avoid SettingWithCopyWarning</span>
+social[<span style="color:#c30">&#39;total_time&#39;</span>] <span style="color:#555">=</span> social<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>total_time(x), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+
+social <span style="color:#555">=</span> social<span style="color:#555">.</span>set_index([<span style="color:#c30">&#39;Start_time&#39;</span>]) <span style="color:#09f;font-style:italic"># change index to date</span>
+social<span style="color:#555">.</span>index <span style="color:#555">=</span> social<span style="color:#555">.</span>index<span style="color:#555">.</span>date
+social <span style="color:#555">=</span> social<span style="color:#555">.</span>drop(columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;End_time&#39;</span>])</code></pre></div>
+<p>Gonna create a column to indicate whether an event is mock-trial related. <em>(Because y&rsquo;know, that&rsquo;s basically my social life.)</em></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">social[<span style="color:#c30">&#39;is_mock&#39;</span>] <span style="color:#555">=</span> social<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>is_mock_related(x[<span style="color:#c30">&#39;Event&#39;</span>]), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+social<span style="color:#555">.</span>head()</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Event</th>
+      <th>total_time</th>
+      <th>is_mock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-09-30</th>
+      <td>MT Team Dinner</td>
+      <td>2.5</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2017-10-01</th>
+      <td>Brunch w/ Jenn &amp; Stevie</td>
+      <td>1.0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2017-10-03</th>
+      <td>Mock Trial Practice</td>
+      <td>2.0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2017-10-03</th>
+      <td>Mock Trial Practice</td>
+      <td>1.5</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2017-10-04</th>
+      <td>Mock Trial Practice</td>
+      <td>1.5</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">social[social[<span style="color:#c30">&#39;Event&#39;</span>]<span style="color:#555">.</span><span style="color:#366">str</span><span style="color:#555">.</span>contains(<span style="color:#c30">&#34;Tournament&#34;</span>)]</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Event</th>
+      <th>total_time</th>
+      <th>is_mock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-11-04</th>
+      <td>Vanderbilt Tournament</td>
+      <td>48.0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2017-11-11</th>
+      <td>Gunslinger Tournament</td>
+      <td>48.0</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>There are two events that last for 48 hours each - the two tournaments I went to this fall. They&rsquo;re so much longer than every other event that when they&rsquo;re included in the data, the details in the other events get lost. I&rsquo;m gonna code each of the tournaments as 20 hours each, which is a bit more reasonable.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">social<span style="color:#555">.</span>loc[social[<span style="color:#c30">&#39;Event&#39;</span>]<span style="color:#555">.</span><span style="color:#366">str</span><span style="color:#555">.</span>contains(<span style="color:#c30">&#34;Tournament&#34;</span>), <span style="color:#c30">&#39;total_time&#39;</span>] <span style="color:#555">=</span> <span style="color:#f60">30</span></code></pre></div>
+<p>Cool, now let&rsquo;s check out some overall trends first.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Time Spent on Social Activities&#34;</span>,
+                      xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Date&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>)
+
+ax<span style="color:#555">.</span>plot(social[<span style="color:#c30">&#39;total_time&#39;</span>])
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_82_0.png" alt="png" /></p>
+
+<p>Yup, you can see those two spikes in the beginning of November when I had mock trial tournaments.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">social_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(social, fall_2017_start, <span style="color:#c30">&#39;sum&#39;</span>)</code></pre></div>
+<p>Now, a question that I&rsquo;ve always kinda known the answer to but have never had the data to back up&hellip;</p>
+
+<h3 id="question-how-much-time-do-i-spend-on-mock-trial">Question: How much time do I spend on mock trial?</h3>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mock_data <span style="color:#555">=</span> social[social[<span style="color:#c30">&#39;is_mock&#39;</span>]]
+mock_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(mock_data, fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Time Spent on Social Activities&#34;</span>,
+                               xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>)
+
+ax<span style="color:#555">.</span>bar(social_by_week<span style="color:#555">.</span>index, social_by_week[<span style="color:#c30">&#39;total_time&#39;</span>], color<span style="color:#555">=</span>tropical_colors[<span style="color:#f60">0</span>])
+ax<span style="color:#555">.</span>bar(mock_by_week<span style="color:#555">.</span>index, mock_by_week[<span style="color:#c30">&#39;total_time&#39;</span>], color<span style="color:#555">=</span>tropical_colors[<span style="color:#f60">1</span>])
+
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#34;Non-Mock Trial&#34;</span>, <span style="color:#c30">&#34;Mock Trial Related&#34;</span>])
+ax<span style="color:#555">.</span>set_xticks(<span style="color:#366">range</span>(<span style="color:#f60">12</span>))
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_87_0.png" alt="png" /></p>
+
+<p><strong>Answer: a lot</strong></p>
+
+<p>You&rsquo;d think that after two weekends of non-stop mock, week 7 would have been some sort of catharsis week where I stayed far, far away from mock trial. Well, I did indeed do a lot of non-mock trial things&hellip;&hellip;&hellip;with mock trial people.</p>
+
+<p>Note:</p>
+
+<ul>
+<li>There are some events left off of my calendar (impromptu dinners, hangouts, etc.), so the amount of time spent on social activities is slightly underrepresented here.</li>
+</ul>
+
+<p><strong>tl;dr mock trial has taken over my life</strong></p>
+
+<p><a id='work'></a></p>
+
+<h1 id="work">Work</h1>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">all_work <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(data_path <span style="color:#555">+</span> <span style="color:#c30">&#34;work.csv&#34;</span>, skiprows<span style="color:#555">=</span><span style="color:#f60">1</span>,
+                       names<span style="color:#555">=</span>[<span style="color:#c30">&#34;Event&#34;</span>, <span style="color:#c30">&#34;Start_time&#34;</span>, <span style="color:#c30">&#34;End_time&#34;</span>])
+
+all_work <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>convert_columns(all_work)
+work <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>filter_by_date(all_work, fall_2017_start, fall_2017_end)
+
+work<span style="color:#555">.</span>is_copy <span style="color:#555">=</span> False <span style="color:#09f;font-style:italic"># avoid SettingWithCopyWarning</span>
+work[<span style="color:#c30">&#39;total_time&#39;</span>] <span style="color:#555">=</span> work<span style="color:#555">.</span><span style="color:#366">apply</span>(<span style="color:#069;font-weight:bold">lambda</span> x: ticktock<span style="color:#555">.</span>total_time(x), axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+
+work <span style="color:#555">=</span> work<span style="color:#555">.</span>set_index([<span style="color:#c30">&#39;Start_time&#39;</span>]) <span style="color:#09f;font-style:italic"># change index to date</span>
+work<span style="color:#555">.</span>index <span style="color:#555">=</span> work<span style="color:#555">.</span>index<span style="color:#555">.</span>date
+work <span style="color:#555">=</span> work<span style="color:#555">.</span>drop(columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;End_time&#39;</span>])</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">work_by_week <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>group_by_week(work, fall_2017_start, <span style="color:#c30">&#34;sum&#34;</span>)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Hours Worked by Week&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>)
+
+ax<span style="color:#555">.</span>bar(work_by_week<span style="color:#555">.</span>index, work_by_week[<span style="color:#c30">&#39;total_time&#39;</span>], color<span style="color:#555">=</span><span style="color:#c30">&#34;#68829E&#34;</span>)
+ax<span style="color:#555">.</span>set_xticks(work_by_week<span style="color:#555">.</span>index)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_92_0.png" alt="png" /></p>
+
+<p>Nothing too out of the ordinary here - there are drops in the number of hours worked in Week 5 (midterms week) and Week 8 (Thanksgiving).</p>
+
+<p><a id='all'></a></p>
+
+<h1 id="bringin-it-all-together">Bringin&rsquo; it all together</h1>
+
+<p>Gonna play around with some ways to visualize how I spent my time!</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;What did I spend Fall Quarter 2017 doing?&#34;</span>, 
+                      xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hourse&#34;</span>)
+
+categories <span style="color:#555">=</span> [workout_time_by_week, social_by_week, all_studying_by_week, work_by_week]
+bar_colors <span style="color:#555">=</span> np<span style="color:#555">.</span>array([<span style="color:#c30">&#34;#FCC88A&#34;</span>, <span style="color:#c30">&#34;#78B7BB&#34;</span>, <span style="color:#c30">&#34;#F38181&#34;</span>, <span style="color:#c30">&#34;#756C83&#34;</span>])
+
+<span style="color:#069;font-weight:bold">for</span> i, category <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>(categories):
+    ax<span style="color:#555">.</span>bar(x<span style="color:#555">=</span>category<span style="color:#555">.</span>index<span style="color:#555">-</span><span style="color:#f60">0.2</span> <span style="color:#555">+</span> i<span style="color:#555">*</span><span style="color:#f60">0.2</span>, height<span style="color:#555">=</span>category[<span style="color:#c30">&#39;total_time&#39;</span>], width<span style="color:#555">=</span><span style="color:#f60">0.2</span>, 
+           color<span style="color:#555">=</span>bar_colors[i])
+
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#39;Working Out&#39;</span>, <span style="color:#c30">&#39;Socializing&#39;</span>, <span style="color:#c30">&#39;Studying&#39;</span>, <span style="color:#c30">&#39;Working&#39;</span>])
+ax<span style="color:#555">.</span>set_xticks(<span style="color:#366">range</span>(<span style="color:#f60">12</span>))
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_95_0.png" alt="png" /></p>
+
+<p>I don&rsquo;t always visualize time linearly - the mental picture in my head is often one of a circular clock, where the weeks &amp; months go around clockwise. I&rsquo;m gonna try visualizing my time for the quarter that way.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#09f;font-style:italic"># some data cleanup for the polar chart</span>
+
+<span style="color:#09f;font-style:italic"># making time for week 0 small to avoid radius &lt; 0 warning</span>
+week_0 <span style="color:#555">=</span> pd<span style="color:#555">.</span>DataFrame([[<span style="color:#f60">0</span>, <span style="color:#f60">0.01</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>]],
+    columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;Week&#39;</span>, <span style="color:#c30">&#39;total_time&#39;</span>, <span style="color:#c30">&#39;Studying_Math&#39;</span>, <span style="color:#c30">&#39;Studying_Stats&#39;</span>, <span style="color:#c30">&#39;Studying_Film&#39;</span>])<span style="color:#555">.</span>set_index(<span style="color:#c30">&#39;Week&#39;</span>)
+all_studying_by_week <span style="color:#555">=</span> all_studying_by_week<span style="color:#555">.</span>append(week_0)<span style="color:#555">.</span>sort_index()
+
+week_6 <span style="color:#555">=</span> pd<span style="color:#555">.</span>DataFrame([[<span style="color:#f60">6</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0.01</span>]],
+                      columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;Week&#39;</span>, <span style="color:#c30">&#39;Run&#39;</span>, <span style="color:#c30">&#39;Run_length&#39;</span>, <span style="color:#c30">&#39;Swim&#39;</span>, <span style="color:#c30">&#39;total_time&#39;</span>])<span style="color:#555">.</span>set_index(<span style="color:#c30">&#39;Week&#39;</span>)
+workout_time_by_week <span style="color:#555">=</span> workout_time_by_week<span style="color:#555">.</span>append(week_6)<span style="color:#555">.</span>sort_index()</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig <span style="color:#555">=</span> plt<span style="color:#555">.</span>figure(figsize<span style="color:#555">=</span>(<span style="color:#f60">10</span>, <span style="color:#f60">10</span>))
+ax <span style="color:#555">=</span> plt<span style="color:#555">.</span>subplot(<span style="color:#f60">111</span>, projection<span style="color:#555">=</span><span style="color:#c30">&#39;polar&#39;</span>)
+
+N <span style="color:#555">=</span> <span style="color:#f60">12</span> <span style="color:#09f;font-style:italic"># 12 slices</span>
+theta <span style="color:#555">=</span> np<span style="color:#555">.</span>linspace(<span style="color:#f60">0.0</span>, <span style="color:#f60">2</span> <span style="color:#555">*</span> np<span style="color:#555">.</span>pi, N, endpoint<span style="color:#555">=</span>False)
+
+study_radii <span style="color:#555">=</span> all_studying_by_week[<span style="color:#c30">&#39;total_time&#39;</span>]
+study_width <span style="color:#555">=</span>  np<span style="color:#555">.</span>pi <span style="color:#555">/</span> study_radii
+work_radii <span style="color:#555">=</span> work_by_week[<span style="color:#c30">&#39;total_time&#39;</span>]
+work_width <span style="color:#555">=</span> np<span style="color:#555">.</span>pi <span style="color:#555">/</span> work_radii
+workout_radii <span style="color:#555">=</span> workout_time_by_week[<span style="color:#c30">&#39;total_time&#39;</span>]
+workout_width <span style="color:#555">=</span> np<span style="color:#555">.</span>pi <span style="color:#555">/</span> workout_radii
+social_radii <span style="color:#555">=</span> social_by_week[<span style="color:#c30">&#39;total_time&#39;</span>]
+social_width <span style="color:#555">=</span> np<span style="color:#555">.</span>pi <span style="color:#555">/</span> social_radii
+
+radii <span style="color:#555">=</span> [study_radii, work_radii, social_radii, workout_radii]
+width <span style="color:#555">=</span> [study_width, work_width, social_width, workout_width]
+
+colors <span style="color:#555">=</span> [<span style="color:#c30">&#34;#48466D&#34;</span>, <span style="color:#c30">&#34;#3D84A8&#34;</span>, <span style="color:#c30">&#34;#46CDCF&#34;</span>, <span style="color:#c30">&#34;#ABEDD8&#34;</span>]
+
+<span style="color:#069;font-weight:bold">for</span> i, (radii, width) <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>(<span style="color:#366">zip</span>(radii, width)):
+    ax<span style="color:#555">.</span>bar(theta <span style="color:#555">+</span> <span style="color:#f60">0.2</span><span style="color:#555">*</span>i, radii, width<span style="color:#555">=</span>width, bottom<span style="color:#555">=</span><span style="color:#f60">0.0</span>, alpha<span style="color:#555">=</span><span style="color:#f60">0.8</span>, color<span style="color:#555">=</span>colors[i])
+    
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#39;Studying&#39;</span>, <span style="color:#c30">&#39;Working&#39;</span>, <span style="color:#c30">&#39;Socializing&#39;</span>, <span style="color:#c30">&#39;Working Out&#39;</span>], loc<span style="color:#555">=</span><span style="color:#c30">&#39;upper right&#39;</span>)
+ax<span style="color:#555">.</span>set_theta_direction(<span style="color:#555">-</span><span style="color:#f60">1</span>) <span style="color:#09f;font-style:italic"># clockwise</span>
+ax<span style="color:#555">.</span>set_theta_offset(np<span style="color:#555">.</span>pi<span style="color:#555">/</span><span style="color:#f60">2.0</span>) <span style="color:#09f;font-style:italic"># 0 degrees at &#34;North&#34; position</span>
+ax<span style="color:#555">.</span>set_xticklabels([<span style="color:#c30">&#39;Week 0&#39;</span>, <span style="color:#c30">&#39;&#39;</span>, <span style="color:#c30">&#39;Week 3&#39;</span>, <span style="color:#c30">&#39;&#39;</span>, <span style="color:#c30">&#39;Week 6&#39;</span>, <span style="color:#c30">&#39;&#39;</span>, <span style="color:#c30">&#39;Week 9&#39;</span>, <span style="color:#c30">&#39;&#39;</span>])
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_98_0.png" alt="png" /></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#555">=</span> ticktock<span style="color:#555">.</span>create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;What did I spend Fall Quarter 2017 doing?&#34;</span>,
+                               xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;Week&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;Hours&#34;</span>)
+
+x <span style="color:#555">=</span> <span style="color:#366">range</span>(<span style="color:#f60">12</span>)
+xnew <span style="color:#555">=</span> np<span style="color:#555">.</span>linspace(<span style="color:#f60">0</span>, <span style="color:#f60">12</span>, <span style="color:#f60">300</span>)
+
+study_smooth <span style="color:#555">=</span> spline(x, study_radii, xnew)
+work_smooth <span style="color:#555">=</span> spline(x, work_radii, xnew)
+social_smooth <span style="color:#555">=</span> spline(x, social_radii, xnew)
+workout_smooth <span style="color:#555">=</span> spline(x, workout_radii, xnew)
+
+ax<span style="color:#555">.</span>stackplot(xnew, study_smooth, work_smooth, social_smooth, workout_smooth, colors<span style="color:#555">=</span>colors)
+ax<span style="color:#555">.</span>legend([<span style="color:#c30">&#39;Studying&#39;</span>, <span style="color:#c30">&#39;Working&#39;</span>, <span style="color:#c30">&#39;Socializing&#39;</span>, <span style="color:#c30">&#39;Working Out&#39;</span>], ncol<span style="color:#555">=</span><span style="color:#f60">4</span>,
+         loc<span style="color:#555">=</span><span style="color:#c30">&#39;upper center&#39;</span>, bbox_to_anchor<span style="color:#555">=</span>(<span style="color:#f60">0.5</span>, <span style="color:#555">-</span><span style="color:#f60">0.1</span>))
+ax<span style="color:#555">.</span>plot(xnew, study_smooth)
+ax<span style="color:#555">.</span>set_xlim(<span style="color:#f60">0</span>, <span style="color:#f60">11</span>)
+ax<span style="color:#555">.</span>set_xticks(x)
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/fall-2017-analysis/output_99_0.png" alt="png" /></p>
+
+<p>This area plot is a pretty cool way to visualize my time - the two categories on the bottom, studying and working, more or less make up the &ldquo;base&rdquo; of my time. When things get busy, they&rsquo;re the things I still have to do no matter what. Everything else - mock trial and running/swimming are just icing on the cake. I&rsquo;m pretty happy to see that there&rsquo;s always a thin layer of working out &amp; socializing on top of everything, even when the quarter really gets rolling.</p>
+
+<p>It&rsquo;s interesting that the time I spent cumulatively on studying/working/socializing/working out isn&rsquo;t constant from week to week. I expected to see patterns like studying going down when socializing went up - in other words, I&rsquo;d be compensating for time spent on one activity with another activity. Instead, what we&rsquo;re seeing here is that the time spent on each of these activities moves up and down with other activities. For instance, in week 8, time spent on studying, working, and socializing all decrease together. (Honestly, I was probably in recharge mode after weeks 5 - 7).</p>
+
+<p>Well, this has been fun. <em>And that&rsquo;s a wrap, folks!</em></p>
+
+  </div>
+
+  <div id=links>
+    
+    
+      <a class="basic-alignment left" href="https://ashleyshine.github.io/posts/master-of-none/">Master of None Sentiment Analysis &raquo;</a>
+    
+  </div>
+</section>
+
+  
+</body>
+</html>
+
+
+
