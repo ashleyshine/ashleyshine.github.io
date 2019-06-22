@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title></title>
-    <link>ashleyshine.dev/</link>
+    <link>https://ashleyshine.github.io/</link>
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 18 Jun 2019 13:01:27 -0700</lastBuildDate>
     
-	<atom:link href="ashleyshine.dev/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ashleyshine.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>ashleyshine.dev/about/</link>
+      <link>https://ashleyshine.github.io/about/</link>
       <pubDate>Tue, 18 Jun 2019 13:01:27 -0700</pubDate>
       
-      <guid>ashleyshine.dev/about/</guid>
+      <guid>https://ashleyshine.github.io/about/</guid>
       <description>Currently at Factual, where I work on data science and engineering problems with geospatial data.
 Previously at Ticketmaster, where I worked on the personalized recommendations team.
 I studied Applied Math &amp;amp; Statistics at UCLA.
@@ -26,10 +26,10 @@ You can also find me on Github and LinkedIn.</description>
     
     <item>
       <title>Mapping Three Years of Running</title>
-      <link>ashleyshine.dev/posts/strava-viz-running/</link>
+      <link>https://ashleyshine.github.io/posts/strava-viz-running/</link>
       <pubDate>Sat, 22 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>ashleyshine.dev/posts/strava-viz-running/</guid>
+      <guid>https://ashleyshine.github.io/posts/strava-viz-running/</guid>
       <description>All the code for this project can be found on github.
 If you&amp;rsquo;re like me, then you&amp;rsquo;ve probably used Strava at some point to track your runs. If you also spend a lot of time staring at maps like me, you&amp;rsquo;ve probably also realized that&amp;rsquo;s a treasure trove of geospatial data. Welcome to&amp;hellip;a way to create quick and beautiful visualizations of Strava data.
 Sections  Motivation Static Heatmaps Facet Plots Interactive Heatmaps</description>
@@ -37,10 +37,10 @@ Sections  Motivation Static Heatmaps Facet Plots Interactive Heatmaps</descripti
     
     <item>
       <title>Master of None Sentiment Analysis</title>
-      <link>ashleyshine.dev/posts/master-of-none/</link>
+      <link>https://ashleyshine.github.io/posts/master-of-none/</link>
       <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>ashleyshine.dev/posts/master-of-none/</guid>
+      <guid>https://ashleyshine.github.io/posts/master-of-none/</guid>
       <description>All the code for this project is available on github.
 Things I have wanted to do for a while and finally found time to do:
  rewatch Master of None play around with some natural language processing (NLP)  Things I also did:
@@ -49,10 +49,10 @@ Things I have wanted to do for a while and finally found time to do:
     
     <item>
       <title>Where Did My Time Go? Fall 2017 Edition</title>
-      <link>ashleyshine.dev/posts/fall-2017-analysis/</link>
+      <link>https://ashleyshine.github.io/posts/fall-2017-analysis/</link>
       <pubDate>Sat, 23 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>ashleyshine.dev/posts/fall-2017-analysis/</guid>
+      <guid>https://ashleyshine.github.io/posts/fall-2017-analysis/</guid>
       <description>All the code for this project is available on github.
 &amp;lsquo;Twas the night (ten days) before Christmas&amp;hellip; when I finished fall quarter finals, came home for Winter Break, looked at my calendar, and realized something crazy - I had, for once, free time! To do whatever I wanted! Imagine that. Then I realized I also had something else: because I time-block with my calendar (Google Calendar to be specific) in order to plan and protect my time, I had (unknowingly) generated a detailed dataset on how I&amp;rsquo;ve spent my time in over the past year or two.</description>
     </item>
