@@ -6,10 +6,24 @@
     <description>Recent content on Ashley S. Chang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Jun 2019 13:01:27 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 24 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://ashleyshine.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Archer, Tactlenecks, and Network Analysis</title>
+      <link>https://ashleyshine.github.io/posts/archer-network/</link>
+      <pubDate>Mon, 24 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashleyshine.github.io/posts/archer-network/</guid>
+      <description>Two unrelated things I spent a non-trivial amount of time on in college:
+ watching FX&amp;rsquo;s show Archer studying network analysis and graph theory  With Archer, you get gems like
+
+And combined with network analysis, you get things like&amp;hellip;this project right here.
+Sections  Processing Scripts Constructing the Character Network Character Interactions Network Graphs Character Importance with PageRank Visualizing the Character Network  
+Processing Scripts This analysis is for the first five seasons of Archer.</description>
+    </item>
     
     <item>
       <title>About</title>

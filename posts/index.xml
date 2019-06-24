@@ -12,6 +12,20 @@
     
     
     <item>
+      <title>Archer, Tactlenecks, and Network Analysis</title>
+      <link>https://ashleyshine.github.io/posts/archer-network/</link>
+      <pubDate>Mon, 24 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashleyshine.github.io/posts/archer-network/</guid>
+      <description>Two unrelated things I spent a non-trivial amount of time on in college:
+ watching FX&amp;rsquo;s show Archer studying network analysis and graph theory  With Archer, you get gems like
+
+And combined with network analysis, you get things like&amp;hellip;this project right here.
+Sections  Processing Scripts Constructing the Character Network Character Interactions Network Graphs Character Importance with PageRank Visualizing the Character Network  
+Processing Scripts This analysis is for the first five seasons of Archer.</description>
+    </item>
+    
+    <item>
       <title>Mapping Three Years of Running</title>
       <link>https://ashleyshine.github.io/posts/strava-viz-running/</link>
       <pubDate>Sat, 22 Sep 2018 00:00:00 +0000</pubDate>

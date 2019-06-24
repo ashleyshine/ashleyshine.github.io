@@ -7,11 +7,16 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    
+    <meta name="description" content="Exploring Aziz Ansari&#39;s Netflix masterpiece with NLP">
+    <meta name="keywords" content="Master of None, Aziz Ansari, natural language processing, NLP, sentiment analysis, data analysis, data visualization, data science">
+    <meta name="author" content="Ashley S. Chang">
 
     
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
     
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
@@ -19,7 +24,6 @@
 
     <title>
       
-      posts/master-of-none/
       
          Master of None Sentiment Analysis 
       
@@ -28,7 +32,6 @@
 
     <style>
   * {
-    border:0;
     font:inherit;
     font-size:100%;
     vertical-align:baseline;
@@ -248,7 +251,7 @@
     text-align:left;
     width:100%;
     font-size:15px;
-    padding:60px 0 80px;
+    padding:40px 0 80px;
   }
 
   #content h1,#content h2 {
@@ -339,6 +342,26 @@
   #archive-item div {
     padding-top: 0px;
     padding-bottom: 25px;
+  }
+
+  .dataframe {
+    border: 1;
+    border-style: solid;
+    border-color: #E5E5E5;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .dataframe td, th {
+    padding-top: 10px;
+    padding-: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .dataframe th {
+    font-weight: bold;
+    background-color: #F2F2F2;
   }
 
   @media (max-width: 750px) {
@@ -467,6 +490,8 @@
 <li><a href="#season2">Season 2 Analysis</a></li>
 <li><a href="#interactive-graphs">Interactive Graphs</a></li>
 </ul>
+
+<p><br /></p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">textblob</span> <span style="color:#069;font-weight:bold">import</span> TextBlob, Sentence
 <span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">nltk.corpus</span> <span style="color:#069;font-weight:bold">import</span> stopwords
 <span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pandas</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pd</span>

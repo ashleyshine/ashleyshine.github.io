@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="Exploring character networks in FX&#39;s Archer with graph theory and network analysis">
+    <meta name="keywords" content="archer, graph theory, network analysis, pagerank, data science, data analysis, data visualization">
+    <meta name="author" content="Ashley S. Chang">
+
+    
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+    
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon_128x128.png" sizes="128x128">
+
+    <title>
+      
+      
+         Archer, Tactlenecks, and Network Analysis 
+      
+    </title>
+    <link rel="canonical" href="https://ashleyshine.github.io/posts/archer-network/">
+
+    <style>
+  * {
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  #profile img {
+    margin: 50px auto auto auto;
+    max-width: 200px;
+  }
+
+  .left-justify {
+    float: left;
+  }
+
+  .right-justify {
+    float:right;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+    margin-bottom:10px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    color:#1d1313;
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:40px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-top: 50px;
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #description p {
+    color: #403c3b;
+    margin: 0 0;
+  } 
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  .entry-content a {
+    color: #2d96bd;
+    text-decoration: none;
+  }
+
+  #archive-item div {
+    padding-top: 0px;
+    padding-bottom: 25px;
+  }
+
+  .dataframe {
+    border: 1;
+    border-style: solid;
+    border-color: #E5E5E5;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .dataframe td, th {
+    padding-top: 10px;
+    padding-: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .dataframe th {
+    font-weight: bold;
+    background-color: #F2F2F2;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+</style>
+
+
+    
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">Ashley S. Chang</a></h1>
+      <ul>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/posts/">Posts</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> Archer, Tactlenecks, and Network Analysis </h1>
+
+  
+    <div id=sub-header>
+      June 2019 · 14 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    
+
+<p>Two unrelated things I spent a non-trivial amount of time on in college:</p>
+
+<ul>
+<li>watching FX&rsquo;s show <em><a href="https://www.fxnetworks.com/show/s/archer">Archer</a></em></li>
+<li>studying network analysis and graph theory</li>
+</ul>
+
+<p>With <em>Archer</em>, you get gems like</p>
+
+<p><center><img src='/images/archer-network/show/archer_tactleneck.jpg' width='400px'></center></p>
+
+<p>And combined with network analysis, you get things like&hellip;this project right here.</p>
+
+<h2 id="sections">Sections</h2>
+
+<ol>
+<li><a href="#processing-scripts">Processing Scripts</a></li>
+<li><a href="#constructing-the-character-network">Constructing the Character Network</a></li>
+<li><a href="#character-interactions">Character Interactions</a></li>
+<li><a href="#network-graphs">Network Graphs</a></li>
+<li><a href="#char-imp-pagerank">Character Importance with PageRank</a></li>
+<li><a href="#viz-char-network">Visualizing the Character Network</a></li>
+</ol>
+
+<p><a id='processing-scripts'></a></p>
+
+<h2 id="processing-scripts">Processing Scripts</h2>
+
+<p>This analysis is for the first five seasons of <em>Archer</em>. The scripts for seasons 1-5 can be found <a href="https://github.com/bakery/archer">here</a>.</p>
+
+<p>I&rsquo;m gonna go ahead and read in the scripts of all the episodes.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">collections</span> <span style="color:#069;font-weight:bold">import</span> defaultdict, Counter
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">itertools</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">math</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">os</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pprint</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pp</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">re</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">warnings</span>
+
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">networkx</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">nx</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">numpy</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">np</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pandas</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pd</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">seaborn</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">sns</span>
+
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">util</span>
+
+warnings<span style="color:#555">.</span>filterwarnings(<span style="color:#c30">&#34;ignore&#34;</span>)  <span style="color:#09f;font-style:italic"># for matplotlib deprecation warnings</span>
+
+matplotlib<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;font.sans-serif&#39;</span>] <span style="color:#555">=</span> <span style="color:#c30">&#34;Helvetica&#34;</span>
+matplotlib<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;font.family&#39;</span>] <span style="color:#555">=</span> <span style="color:#c30">&#34;sans-serif&#34;</span>
+plt<span style="color:#555">.</span>style<span style="color:#555">.</span>use(<span style="color:#c30">&#39;default&#39;</span>)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">SCRIPTS_DIR <span style="color:#555">=</span> <span style="color:#c30">&#39;./scripts&#39;</span>
+
+all_episodes <span style="color:#555">=</span> util<span style="color:#555">.</span>read_scripts_dir(SCRIPTS_DIR)</code></pre></div>
+<p>This gives us a list of lists, where each inner list contains the lines of an episode. For instance, here&rsquo;s what the lines of one of the episodes looks like:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">all_episodes[<span style="color:#f60">0</span>][:<span style="color:#f60">10</span>]</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[&#39;&gt;&gt; PAM: Yam! Yom! Yom!\n&#39;,
+ &#39;&gt;&gt; LANA: Stop. Stop it.\n&#39;,
+ &#39;&gt;&gt; PAM: Yah! Huh! Yum! Yum! Yum! &gt;&gt; LANA: Pam!\n&#39;,
+ &#39;&gt;&gt; PAM: Yum-yum-yum! Yum-yum-yum! Gimme! Gimme! Yum-yum! Gimme!\n&#39;,
+ &#39;&gt;&gt; LANA: Goddamn it, will you calm the shit down?!\n&#39;,
+ &#39;&gt;&gt; PAM: Wow.\n&#39;,
+ &#34;&gt;&gt; LANA: Well?! This isn&#39;t good practice. My baby&#39;s not gonna be a coke addict!\n&#34;,
+ &#39;&gt;&gt; PAM: Wow.\n&#39;,
+ &#34;&gt;&gt; LANA: Oh, I&#39;m sorry. What would you like to call it?\n&#34;,
+ &#39;&gt;&gt; PAM: Mm, cocaine enthusiast?\n&#39;]</pre></div>
+<p>We can take advantage of the fact that the scripts use the structure of <code>NAME:</code> to indicate the character speaking. With regular expressions, it&rsquo;s a simple matter to extract the name of the characters speaking in each script and store that in an ordered list.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">get_speaker_list</span>(lines):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return list with the order characters speak in.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        text: list holding lines from an episode
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    speaking_order <span style="color:#555">=</span> []
+
+    <span style="color:#069;font-weight:bold">for</span> line <span style="color:#000;font-weight:bold">in</span> lines:
+        regex_str <span style="color:#555">=</span> <span style="color:#c30">r</span><span style="color:#c30">&#39;(^\w+\s*\w+):|(\w+):&#39;</span>  <span style="color:#09f;font-style:italic"># some speaking instances start mid-line</span>
+        mo <span style="color:#555">=</span> re<span style="color:#555">.</span>findall(regex_str, line)
+
+        <span style="color:#069;font-weight:bold">for</span> match <span style="color:#000;font-weight:bold">in</span> mo:
+            <span style="color:#069;font-weight:bold">if</span> match[<span style="color:#f60">0</span>] <span style="color:#555">!=</span> <span style="color:#c30">&#39;&#39;</span>:
+                name <span style="color:#555">=</span> match[<span style="color:#f60">0</span>]
+            <span style="color:#069;font-weight:bold">else</span>:
+                name <span style="color:#555">=</span> match[<span style="color:#f60">1</span>]
+
+            <span style="color:#069;font-weight:bold">if</span> <span style="color:#366">len</span>(name) <span style="color:#555">&lt;=</span> <span style="color:#f60">1</span>:
+                <span style="color:#069;font-weight:bold">continue</span>  <span style="color:#09f;font-style:italic"># only include names with more than 1 character</span>
+
+            speaking_order<span style="color:#555">.</span>append(name<span style="color:#555">.</span>lower())
+
+    <span style="color:#069;font-weight:bold">return</span> speaking_order</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">speaker_lists <span style="color:#555">=</span> [get_speaker_list(ep) <span style="color:#069;font-weight:bold">for</span> ep <span style="color:#000;font-weight:bold">in</span> all_episodes]</code></pre></div>
+<p>Let&rsquo;s take a look at what we&rsquo;ve got now that we&rsquo;ve extracted the character names:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">print</span>(speaker_lists[<span style="color:#f60">0</span>][:<span style="color:#f60">10</span>])</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[&#39;pam&#39;, &#39;lana&#39;, &#39;pam&#39;, &#39;lana&#39;, &#39;pam&#39;, &#39;lana&#39;, &#39;pam&#39;, &#39;lana&#39;, &#39;pam&#39;, &#39;lana&#39;]</pre></div>
+<p>I&rsquo;m going to go ahead and get all the unique characters who spoke in seasons 1-5. We&rsquo;ll also want to remove some names that are&rsquo;t actually characters, like &ldquo;everybody&rdquo;, &ldquo;all&rdquo;, and &ldquo;both&rdquo;.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">speaker_list_all_eps <span style="color:#555">=</span> <span style="color:#366">list</span>(itertools<span style="color:#555">.</span>chain<span style="color:#555">.</span>from_iterable(speaker_lists))
+
+chars_to_remove <span style="color:#555">=</span> [<span style="color:#c30">&#39;everybody&#39;</span>, <span style="color:#c30">&#39;all&#39;</span>, <span style="color:#c30">&#39;both&#39;</span>]
+characters <span style="color:#555">=</span> [c <span style="color:#069;font-weight:bold">for</span> c <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">set</span>(speaker_list_all_eps) <span style="color:#069;font-weight:bold">if</span> c <span style="color:#000;font-weight:bold">not</span> <span style="color:#000;font-weight:bold">in</span> chars_to_remove]
+
+<span style="color:#366">len</span>(characters)</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">255</pre></div>
+<p>So we&rsquo;ve got 255 characters in total. Here&rsquo;s a sample:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">print</span>(characters[:<span style="color:#f60">10</span>])</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[&#39;caldéron&#39;, &#39;claudio&#39;, &#39;george&#39;, &#39;russian mp&#39;, &#39;cheryl&#39;, &#39;rodney&#39;, &#39;janelle&#39;, &#39;scripes&#39;, &#39;dog&#39;, &#39;barry&#39;]</pre></div>
+<p>While we&rsquo;re here, let&rsquo;s go ahead and store the main characters of <em>Archer</em> so we can access them easily later.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">main_characters <span style="color:#555">=</span> [<span style="color:#c30">&#39;krieger&#39;</span>, <span style="color:#c30">&#39;malory&#39;</span>, <span style="color:#c30">&#39;archer&#39;</span>, <span style="color:#c30">&#39;lana&#39;</span>, <span style="color:#c30">&#39;ray&#39;</span>, <span style="color:#c30">&#39;cheryl&#39;</span>, <span style="color:#c30">&#39;pam&#39;</span>, <span style="color:#c30">&#39;cyril&#39;</span>]</code></pre></div>
+<p><img src='/images/archer-network/show/archer_cast.png' width=660px>
+<center><i>The main cast of Archer</i></center></p>
+
+<p><a id='constructing-the-character-network'></a></p>
+
+<h2 id="constructing-the-character-network">Constructing the Character Network</h2>
+
+<p>I&rsquo;m interested in the relationships between the characters in <em>Archer</em>, so I&rsquo;ll need some way to represent that. Let&rsquo;s start by creating a weighted adjacency matrix that records the number of times characters interact with each other.</p>
+
+<p>The network will be a n x n <em>network</em> matrix, stored in a pandas DataFrame, where the rows and the columns are indexed by the characters. The entries of the matrix will indicate how frequently towo characters interacted with each other. That is,</p>
+
+<p>$$network(character_1, character_2) = \# \ of \ interactions \ between  \ character_1 \ and \ character_2$$</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">initialize_network</span>(characters):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return n x n pandas DataFrame with indexed by character names,
+</span><span style="color:#c30">    with each entry initialized to 0.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        characters: list of character names
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    n_characters <span style="color:#555">=</span> <span style="color:#366">len</span>(characters)
+    network <span style="color:#555">=</span> pd<span style="color:#555">.</span>DataFrame(
+        np<span style="color:#555">.</span>zeros(shape<span style="color:#555">=</span>(n_characters, n_characters)),
+        columns<span style="color:#555">=</span><span style="color:#366">sorted</span>(characters),
+        index<span style="color:#555">=</span><span style="color:#366">sorted</span>(characters)
+    )
+
+    <span style="color:#069;font-weight:bold">return</span> network</code></pre></div>
+<p>Here&rsquo;s what the head of the network matrix looks like:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">entire_network <span style="color:#555">=</span> initialize_network(characters)
+entire_network<span style="color:#555">.</span>iloc[:<span style="color:#f60">5</span>, :<span style="color:#f60">5</span>]</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acuff</th>
+      <th>agent</th>
+      <th>airman</th>
+      <th>albanian ambassador</th>
+      <th>albanian attache</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>acuff</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>agent</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>airman</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>albanian ambassador</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>albanian attache</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Now we can go ahead and populate the network based on the number of interactions each pair of characters has.</p>
+
+<p>Since all we have is the order that characters speak in throughout each script, there&rsquo;s no straightfoward way of determining when two characters are &ldquo;interacting&rdquo;. Just because their dialogue appears in close proximity of each other doesn&rsquo;t necessarily mean they&rsquo;re interacting. Two bits of dialogue in close proximity in our speaker list could be from totally different scenes in the show - meaning that our two characters won&rsquo;t actually have interacted.</p>
+
+<p>With those limitations in mind, I&rsquo;m going to go ahead and make some assumptions here: each time two characters speak within 15 lines of each other, that counts as an interaction. We can use the idea of a &ldquo;sliding window&rdquo; to consider different scenes in each episode. Each time two characters appear in the same scene, we add 1 to their entry in the network matrix.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">construct_character_network</span>(speaker_lists, network, scene_size<span style="color:#555">=</span><span style="color:#f60">15</span>):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return n x n pandas DataFrame where entries are the number
+</span><span style="color:#c30">    of times characters interact with each other.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        speaker_list: list of lists, where each inner list has the
+</span><span style="color:#c30">            order of speakers in an episode
+</span><span style="color:#c30">        network: pandas DataFrame
+</span><span style="color:#c30">        scene_size: the number of dialogue lines to consider for each scene.
+</span><span style="color:#c30">            If two characters are found in a scene together, that interaction
+</span><span style="color:#c30">            is added to the network.
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    characters <span style="color:#555">=</span> network<span style="color:#555">.</span>columns
+    
+    <span style="color:#069;font-weight:bold">for</span> episode_list <span style="color:#000;font-weight:bold">in</span> speaker_lists:
+        <span style="color:#069;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">range</span>(<span style="color:#366">len</span>(episode_list) <span style="color:#555">-</span> scene_size):
+            chars_in_scene <span style="color:#555">=</span> episode_list[i:i<span style="color:#555">+</span>scene_size]
+
+            <span style="color:#069;font-weight:bold">for</span> char_1, char_2 <span style="color:#000;font-weight:bold">in</span> itertools<span style="color:#555">.</span>combinations(characters, <span style="color:#f60">2</span>):
+                <span style="color:#069;font-weight:bold">if</span> char_1 <span style="color:#000;font-weight:bold">in</span> chars_in_scene <span style="color:#000;font-weight:bold">and</span> char_2 <span style="color:#000;font-weight:bold">in</span> chars_in_scene:                    
+                    network<span style="color:#555">.</span>at[char_1, char_2] <span style="color:#555">+=</span> <span style="color:#f60">1</span>
+                    network<span style="color:#555">.</span>at[char_2, char_1] <span style="color:#555">+=</span> <span style="color:#f60">1</span>
+                
+    <span style="color:#069;font-weight:bold">return</span> network</code></pre></div>
+<p>Now we can iterate over all the episodes in the season to fill in our network, to get the whole character network.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">entire_network <span style="color:#555">=</span> construct_character_network(speaker_lists, entire_network)</code></pre></div>
+<p>Before we look at the network, there is one final thing to clean up: Cheryl Tunt is referred to by multiple aliases throughout the show - Archer calls her Carol instead of Cheryl every five seconds, and in Season 5 when she becomes a country singer she goes by Cherlene. All these names are recorded as different characters in our network, but they should be combined because they&rsquo;re really all the same person.</p>
+
+<table>
+    <tr>
+        <td><img src='/images/archer-network/show/cheryl.jpg' style='width: 500px'><center><i>Cheryl</i></center></td>
+        <td><img src='/images/archer-network/show/carol.jpg' style='width: 500px'><center><i>Carol</i></center></td>
+        <td><img src='/images/archer-network/show/cherlene.jpeg' style='width: 500px'><center><i>Cherlene</i></center></td>
+    </tr>
+</table>
+
+<p>Here&rsquo;s what the records for Cheryl, Carol, and Cherlene look like right now:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cheryl_aliases <span style="color:#555">=</span> [<span style="color:#c30">&#39;cheryl&#39;</span>, <span style="color:#c30">&#39;carol&#39;</span>, <span style="color:#c30">&#39;cherlene&#39;</span>]
+entire_network<span style="color:#555">.</span>loc[main_characters, cheryl_aliases]<span style="color:#555">.</span>head()</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cheryl</th>
+      <th>carol</th>
+      <th>cherlene</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>krieger</th>
+      <td>39.0</td>
+      <td>659.0</td>
+      <td>432.0</td>
+    </tr>
+    <tr>
+      <th>malory</th>
+      <td>191.0</td>
+      <td>2103.0</td>
+      <td>755.0</td>
+    </tr>
+    <tr>
+      <th>archer</th>
+      <td>297.0</td>
+      <td>2674.0</td>
+      <td>975.0</td>
+    </tr>
+    <tr>
+      <th>lana</th>
+      <td>115.0</td>
+      <td>2245.0</td>
+      <td>864.0</td>
+    </tr>
+    <tr>
+      <th>ray</th>
+      <td>0.0</td>
+      <td>53.0</td>
+      <td>270.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">combine_aliases</span>(network, aliases, name_to_keep):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Combine the records for the columns and rows in all_aliases
+</span><span style="color:#c30">    under a single column and row.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        network: pandas DataFrame
+</span><span style="color:#c30">        aliases: all the names of a character
+</span><span style="color:#c30">        name_to_keep: the name to combine rows and columns under
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    new_network <span style="color:#555">=</span> network<span style="color:#555">.</span>copy()
+    new_network[name_to_keep] <span style="color:#555">=</span> new_network[aliases]<span style="color:#555">.</span><span style="color:#366">sum</span>(axis<span style="color:#555">=</span><span style="color:#f60">1</span>)
+    new_network<span style="color:#555">.</span>loc[name_to_keep] <span style="color:#555">=</span> new_network[name_to_keep]
+    
+    names_to_remove <span style="color:#555">=</span> [x <span style="color:#069;font-weight:bold">for</span> x <span style="color:#000;font-weight:bold">in</span> aliases <span style="color:#069;font-weight:bold">if</span> x <span style="color:#555">!=</span> name_to_keep]
+    new_network<span style="color:#555">.</span>drop(names_to_remove, axis<span style="color:#555">=</span><span style="color:#f60">0</span>, inplace<span style="color:#555">=</span>True)
+    new_network<span style="color:#555">.</span>drop(names_to_remove, axis<span style="color:#555">=</span><span style="color:#f60">1</span>, inplace<span style="color:#555">=</span>True)
+    
+    <span style="color:#069;font-weight:bold">return</span> new_network</code></pre></div>
+<p>And after we combine the three columns into one column for Cheryl:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">network <span style="color:#555">=</span> combine_aliases(entire_network, cheryl_aliases, <span style="color:#c30">&#39;cheryl&#39;</span>)
+network<span style="color:#555">.</span>loc[main_characters, [<span style="color:#c30">&#39;cheryl&#39;</span>]]<span style="color:#555">.</span>head()</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cheryl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>krieger</th>
+      <td>1130.0</td>
+    </tr>
+    <tr>
+      <th>malory</th>
+      <td>3049.0</td>
+    </tr>
+    <tr>
+      <th>archer</th>
+      <td>3946.0</td>
+    </tr>
+    <tr>
+      <th>lana</th>
+      <td>3224.0</td>
+    </tr>
+    <tr>
+      <th>ray</th>
+      <td>323.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Similarly, we can combine the records for Ray, who gets referred to as Gillette as well:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ray_aliases <span style="color:#555">=</span> [<span style="color:#c30">&#39;ray&#39;</span>, <span style="color:#c30">&#39;gillette&#39;</span>]
+network <span style="color:#555">=</span> combine_aliases(network, ray_aliases, <span style="color:#c30">&#39;ray&#39;</span>)</code></pre></div>
+<p>And we can remove Carol, Cherlene, and Gillette from our list of characters.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">characters <span style="color:#555">=</span> [c <span style="color:#069;font-weight:bold">for</span> c <span style="color:#000;font-weight:bold">in</span> characters <span style="color:#069;font-weight:bold">if</span> c <span style="color:#000;font-weight:bold">not</span> <span style="color:#000;font-weight:bold">in</span> [<span style="color:#c30">&#39;carol&#39;</span>, <span style="color:#c30">&#39;cherlene&#39;</span>, <span style="color:#c30">&#39;gillete&#39;</span>]]</code></pre></div>
+<p><a id='character-interactions'></a></p>
+
+<h2 id="character-interactions">Character Interactions</h2>
+
+<p>Now we can take a look at how the main characters interact with each other!</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">network<span style="color:#555">.</span>loc[main_characters, main_characters]</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>krieger</th>
+      <th>malory</th>
+      <th>archer</th>
+      <th>lana</th>
+      <th>ray</th>
+      <th>cheryl</th>
+      <th>pam</th>
+      <th>cyril</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>krieger</th>
+      <td>0.0</td>
+      <td>1849.0</td>
+      <td>2484.0</td>
+      <td>2049.0</td>
+      <td>971.0</td>
+      <td>1130.0</td>
+      <td>1509.0</td>
+      <td>1641.0</td>
+    </tr>
+    <tr>
+      <th>malory</th>
+      <td>1849.0</td>
+      <td>0.0</td>
+      <td>7676.0</td>
+      <td>6316.0</td>
+      <td>2211.0</td>
+      <td>3049.0</td>
+      <td>4280.0</td>
+      <td>4203.0</td>
+    </tr>
+    <tr>
+      <th>archer</th>
+      <td>2484.0</td>
+      <td>7676.0</td>
+      <td>0.0</td>
+      <td>9937.0</td>
+      <td>3654.0</td>
+      <td>3946.0</td>
+      <td>5578.0</td>
+      <td>6656.0</td>
+    </tr>
+    <tr>
+      <th>lana</th>
+      <td>2049.0</td>
+      <td>6316.0</td>
+      <td>9937.0</td>
+      <td>0.0</td>
+      <td>2798.0</td>
+      <td>3224.0</td>
+      <td>4828.0</td>
+      <td>5580.0</td>
+    </tr>
+    <tr>
+      <th>ray</th>
+      <td>971.0</td>
+      <td>2211.0</td>
+      <td>3654.0</td>
+      <td>2798.0</td>
+      <td>13.0</td>
+      <td>1335.0</td>
+      <td>1568.0</td>
+      <td>2490.0</td>
+    </tr>
+    <tr>
+      <th>cheryl</th>
+      <td>1130.0</td>
+      <td>3049.0</td>
+      <td>3946.0</td>
+      <td>3224.0</td>
+      <td>1335.0</td>
+      <td>0.0</td>
+      <td>2982.0</td>
+      <td>2138.0</td>
+    </tr>
+    <tr>
+      <th>pam</th>
+      <td>1509.0</td>
+      <td>4280.0</td>
+      <td>5578.0</td>
+      <td>4828.0</td>
+      <td>1568.0</td>
+      <td>2982.0</td>
+      <td>0.0</td>
+      <td>3693.0</td>
+    </tr>
+    <tr>
+      <th>cyril</th>
+      <td>1641.0</td>
+      <td>4203.0</td>
+      <td>6656.0</td>
+      <td>5580.0</td>
+      <td>2490.0</td>
+      <td>2138.0</td>
+      <td>3693.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>We can also visualize the interactions between the main characters using a heatmap:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">create_plot</span>(figsize<span style="color:#555">=</span>(<span style="color:#f60">15</span>,<span style="color:#f60">10</span>), title<span style="color:#555">=</span><span style="color:#c30">&#34;&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#34;&#34;</span>, ylabel<span style="color:#555">=</span><span style="color:#c30">&#34;&#34;</span>):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return fig, ax for matplotlib plot with provided parameters.
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    fig, ax <span style="color:#555">=</span> plt<span style="color:#555">.</span>subplots(figsize<span style="color:#555">=</span>figsize)
+    ax<span style="color:#555">.</span>set_facecolor(<span style="color:#c30">&#39;white&#39;</span>)
+    
+    ax<span style="color:#555">.</span>set_title(title, fontsize<span style="color:#555">=</span><span style="color:#f60">14</span>, fontweight<span style="color:#555">=</span><span style="color:#c30">&#39;bold&#39;</span>)
+    ax<span style="color:#555">.</span>set_xlabel(xlabel)
+    ax<span style="color:#555">.</span>set_ylabel(ylabel)
+    
+    sides <span style="color:#555">=</span> [<span style="color:#c30">&#39;right&#39;</span>, <span style="color:#c30">&#39;left&#39;</span>, <span style="color:#c30">&#39;top&#39;</span>, <span style="color:#c30">&#39;bottom&#39;</span>]
+    <span style="color:#069;font-weight:bold">for</span> side <span style="color:#000;font-weight:bold">in</span> sides:
+        ax<span style="color:#555">.</span>spines[side]<span style="color:#555">.</span>set_visible(False)
+    
+    <span style="color:#069;font-weight:bold">return</span> fig, ax</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">main_network <span style="color:#555">=</span> network<span style="color:#555">.</span>loc[main_characters][main_characters]
+
+fig, ax <span style="color:#555">=</span> create_plot(figsize<span style="color:#555">=</span>(<span style="color:#f60">10</span>, <span style="color:#f60">10</span>))
+sns<span style="color:#555">.</span>heatmap(main_network, ax<span style="color:#555">=</span>ax, cmap<span style="color:#555">=</span><span style="color:#c30">&#39;OrRd&#39;</span>)
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/archer-network/output_39_0.png" alt="png" /></p>
+
+<p>The two characters who interact with each other the most are Archer and Lana. Not surprising, given their extensive&hellip;history.</p>
+
+<p><img src="/images/archer-network/show/archer_lana.jpg" width=600px></p>
+
+<p><a id='network-graphs'></a></p>
+
+<h2 id="network-graphs">Network Graphs</h2>
+
+<p>Now on to the fun stuff - since we&rsquo;ve already created our network matrix, the next step is to consider the network as a graph!</p>
+
+<p>For the uninitiated, the idea of a graph here is simple. There are <strong>nodes</strong> that represent the characters, and <strong>edges</strong> that represent the relationships between the nodes (characters). If two characters have some sort of relationship, there will be an edge between them. We&rsquo;ll be considering a <strong>weighted graph</strong>, where edges are assigned a <strong>weight</strong> based on the strength of the relationship.</p>
+
+<p>There&rsquo;s a lot of literature on <a href="https://en.wikipedia.org/wiki/Graph_theory">graph theory</a> on internet for the curious, so I won&rsquo;t be going in-depth into that here.</p>
+
+<p>Lucky for us, NetworkX provides an easy way to create a graph from a pandas DataFrame network.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">graph <span style="color:#555">=</span> nx<span style="color:#555">.</span>from_pandas_adjacency(network)</code></pre></div>
+<p>We can get some quick information about our graph:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">print</span>(nx<span style="color:#555">.</span>info(graph))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Name: 
+Type: Graph
+Number of nodes: 252
+Number of edges: 1945
+Average degree:  15.4365</pre></div>
+<p>The <strong>degree</strong> of a node is the number of edges it has, or the number of other nodes it&rsquo;s connected to. In this context, each node/character&rsquo;s degree will be the number of other character&rsquo;s he or she has interacted with.</p>
+
+<p><a id='char-imp-pagerank'></a></p>
+
+<h2 id="character-importance-with-pagerank">Character Importance with PageRank</h2>
+
+<p>It&rsquo;s tempting to use each character&rsquo;s degree as a proxy for how important he or she is. But we can get a much better sense of each character&rsquo;s importance in the show by using <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a>, the algorithm used by Google&rsquo;s search engine to rank search results. PageRank gives us a way to measure the <strong>centrality</strong>, or importance, of each node in the graph.</p>
+
+<p>Instead of just looking at the number of relationships each character has, PageRank also takes into account the <em>quality</em> of those relationships. Being connected to a handful of highly-connected characters is a better indicator of importance than being connected to many poorly-connected characters. For us, that means that characters who are connected to other well-connected characters will have a higher PageRank score.</p>
+
+<p>Let&rsquo;s go ahead and apply the PageRank algorithm to our graph and look at 30 characters with the highest PageRank scores.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">create_pagerank_df</span>(graph):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return a pandas DataFrame with the pagerank score of each
+</span><span style="color:#c30">    node in a graph.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        graph: networkX graph
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    pagerank_vec <span style="color:#555">=</span> nx<span style="color:#555">.</span>pagerank_numpy(graph)
+    pagerank_df <span style="color:#555">=</span> pd<span style="color:#555">.</span>DataFrame<span style="color:#555">.</span>from_dict(
+        pagerank_vec, orient<span style="color:#555">=</span><span style="color:#c30">&#39;index&#39;</span>, columns<span style="color:#555">=</span>[<span style="color:#c30">&#39;pagerank&#39;</span>]
+    )
+    
+    <span style="color:#069;font-weight:bold">return</span> pagerank_df
+
+pagerank_df <span style="color:#555">=</span> create_pagerank_df(graph)
+pagerank_top_30 <span style="color:#555">=</span> pagerank_df<span style="color:#555">.</span>sort_values(<span style="color:#c30">&#39;pagerank&#39;</span>, ascending<span style="color:#555">=</span>False)<span style="color:#555">.</span>head(<span style="color:#f60">30</span>)
+
+pagerank_top_30<span style="color:#555">.</span>head(<span style="color:#f60">10</span>)</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pagerank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>archer</th>
+      <td>0.145513</td>
+    </tr>
+    <tr>
+      <th>lana</th>
+      <td>0.112982</td>
+    </tr>
+    <tr>
+      <th>malory</th>
+      <td>0.094645</td>
+    </tr>
+    <tr>
+      <th>cyril</th>
+      <td>0.077681</td>
+    </tr>
+    <tr>
+      <th>pam</th>
+      <td>0.073062</td>
+    </tr>
+    <tr>
+      <th>cheryl</th>
+      <td>0.054078</td>
+    </tr>
+    <tr>
+      <th>ray</th>
+      <td>0.047309</td>
+    </tr>
+    <tr>
+      <th>krieger</th>
+      <td>0.035393</td>
+    </tr>
+    <tr>
+      <th>woodhouse</th>
+      <td>0.010774</td>
+    </tr>
+    <tr>
+      <th>barry</th>
+      <td>0.010089</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#555">.</span>style<span style="color:#555">.</span>use(<span style="color:#c30">&#39;seaborn-bright&#39;</span>)
+
+colors <span style="color:#555">=</span> plt<span style="color:#555">.</span>cm<span style="color:#555">.</span>OrRd(np<span style="color:#555">.</span>linspace(<span style="color:#555">.</span><span style="color:#f60">2</span>, <span style="color:#555">.</span><span style="color:#f60">8</span>, <span style="color:#366">len</span>(pagerank_top_30)))[::<span style="color:#555">-</span><span style="color:#f60">1</span>]
+
+fig, ax <span style="color:#555">=</span> create_plot(title<span style="color:#555">=</span><span style="color:#c30">&#34;Character Centrality&#34;</span>, xlabel<span style="color:#555">=</span><span style="color:#c30">&#39;PageRank Score&#39;</span>)
+ax<span style="color:#555">.</span>barh(pagerank_top_30<span style="color:#555">.</span>index, pagerank_top_30[<span style="color:#c30">&#39;pagerank&#39;</span>], color<span style="color:#555">=</span>colors)
+plt<span style="color:#555">.</span>gca()<span style="color:#555">.</span>invert_yaxis()
+
+plt<span style="color:#555">.</span>show()</code></pre></div>
+<p><img src="/images/archer-network/output_48_0.png" alt="png" /></p>
+
+<p><a id='viz-char-network'></a></p>
+
+<h2 id="visualizing-the-character-network">Visualizing the Character Network</h2>
+
+<p>Each character&rsquo;s PageRank score is useful information we can use when visualizing character network graph. Let&rsquo;s plot the network so that each character&rsquo;s node size is determined by it&rsquo;s PageRank score, so that characters with a higher score with have a bigger node. Lines are drawn to connect two nodes if there&rsquo;s an edge/interaction between them; the stronger the interaction (i.e. the bigger the weight of the edge), the thicker the edge line.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">custom_colormap</span>(n_colors):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Return custom matplolib colormap for coloring nodes.
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    colors <span style="color:#555">=</span> np<span style="color:#555">.</span>vstack((
+        plt<span style="color:#555">.</span>cm<span style="color:#555">.</span>tab20c(np<span style="color:#555">.</span>linspace(<span style="color:#f60">0</span>, <span style="color:#f60">1</span>, math<span style="color:#555">.</span>ceil(n_colors <span style="color:#555">/</span> <span style="color:#f60">2</span>))),
+        plt<span style="color:#555">.</span>cm<span style="color:#555">.</span>tab20(np<span style="color:#555">.</span>linspace(<span style="color:#f60">0</span>, <span style="color:#f60">1</span>, math<span style="color:#555">.</span>floor(n_colors <span style="color:#555">/</span> <span style="color:#f60">2</span>)))
+    ))
+    color_map <span style="color:#555">=</span> matplotlib<span style="color:#555">.</span>colors<span style="color:#555">.</span>LinearSegmentedColormap<span style="color:#555">.</span>from_list(
+        <span style="color:#c30">&#39;custom_colormap&#39;</span>, colors
+    )
+    
+    <span style="color:#069;font-weight:bold">return</span> color_map
+
+
+<span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">plot_network_graph</span>(graph, position, node_size, edge_factor<span style="color:#555">=</span><span style="color:#f60">100</span>, node_factor<span style="color:#555">=</span><span style="color:#f60">100</span>):
+    <span style="color:#c30">&#34;&#34;&#34;
+</span><span style="color:#c30">    Plot a graph given the positions of the nodes.
+</span><span style="color:#c30">    Params:
+</span><span style="color:#c30">        graph: networkX graph
+</span><span style="color:#c30">        nodes: networkX graph layout
+</span><span style="color:#c30">        node_size: list of floats for node size
+</span><span style="color:#c30">        edge_factor: factor to divide graph weights by; used to determined edge width
+</span><span style="color:#c30">        node_factor: factor to multiply node degrees by; used to determine node size
+</span><span style="color:#c30">    &#34;&#34;&#34;</span>
+    n_nodes <span style="color:#555">=</span> graph<span style="color:#555">.</span>__len__()
+    weights <span style="color:#555">=</span> [graph[u][v][<span style="color:#c30">&#39;weight&#39;</span>] <span style="color:#555">/</span> edge_factor <span style="color:#069;font-weight:bold">for</span> u, v <span style="color:#000;font-weight:bold">in</span> graph<span style="color:#555">.</span>edges()]
+    node_size <span style="color:#555">=</span> [size <span style="color:#555">*</span> node_factor <span style="color:#069;font-weight:bold">for</span> size <span style="color:#000;font-weight:bold">in</span> node_size]
+    
+    fig, ax <span style="color:#555">=</span> create_plot() 
+    color_map <span style="color:#555">=</span> custom_colormap(n_nodes)
+
+    nx<span style="color:#555">.</span>draw_networkx(
+        graph, position, ax<span style="color:#555">=</span>ax, with_labels<span style="color:#555">=</span>False, nodelist<span style="color:#555">=</span>[], edgelist<span style="color:#555">=</span>[]
+    )
+    nx<span style="color:#555">.</span>draw_networkx_labels(
+        graph, position, ax<span style="color:#555">=</span>ax, font_size<span style="color:#555">=</span><span style="color:#f60">13</span>, font_weight<span style="color:#555">=</span><span style="color:#c30">&#39;bold&#39;</span>
+    )
+    nx<span style="color:#555">.</span>draw_networkx_edges(
+        graph, position, ax<span style="color:#555">=</span>ax, width<span style="color:#555">=</span>weights,alpha<span style="color:#555">=</span><span style="color:#f60">0.8</span>, edge_color<span style="color:#555">=</span><span style="color:#c30">&#39;#323234&#39;</span>
+    )
+    nx<span style="color:#555">.</span>draw_networkx_nodes(
+        graph, position, ax<span style="color:#555">=</span>ax, node_size<span style="color:#555">=</span>node_size, node_color<span style="color:#555">=</span><span style="color:#366">range</span>(n_nodes), 
+        cmap<span style="color:#555">=</span>color_map, alpha<span style="color:#555">=</span><span style="color:#f60">0.9</span>
+    )
+    
+    plt<span style="color:#555">.</span>show()</code></pre></div>
+<p>One last thing before we start plotting the network graphs. There are 258 characters who spoke across the first five seasons of <em>Archer</em> - that&rsquo;s going to get quite messy quite fast when we plot the graph (I know this because I&rsquo;ve tried it). To cut down on some of the noise, let&rsquo;s plot only the characters who speak more than 30 times.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">char_frequencies <span style="color:#555">=</span> Counter(speaker_list_all_eps)
+chars_to_plot <span style="color:#555">=</span> [char <span style="color:#069;font-weight:bold">for</span> char, freq <span style="color:#000;font-weight:bold">in</span> char_frequencies<span style="color:#555">.</span>items() <span style="color:#069;font-weight:bold">if</span> freq <span style="color:#555">&gt;</span> <span style="color:#f60">30</span>]
+
+subgraph <span style="color:#555">=</span> graph<span style="color:#555">.</span>subgraph(chars_to_plot)
+pagerank_scores <span style="color:#555">=</span> create_pagerank_df(subgraph)[<span style="color:#c30">&#39;pagerank&#39;</span>]
+<span style="color:#069;font-weight:bold">print</span>(nx<span style="color:#555">.</span>info(subgraph))</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Name: 
+Type: Graph
+Number of nodes: 43
+Number of edges: 351
+Average degree:  16.3256</pre></div>
+<p>Doing this will cut the network down to 48 characters - much more managable.</p>
+
+<p>There are a couple of ways we can arrange the nodes of our graph. The first is by drawing the network as a <a href="https://en.wikipedia.org/wiki/Force-directed_graph_drawing">force-directed graph</a>, which borrows some concepts from physics to arrange the nodes. In general, the algorithm will position the nodes of the graph so that as few edges cross as possible and all edges are of somewhat equal length. The math behind the algorithm is pretty interesting and worth spending some time on.</p>
+
+<p>For the purposes of our network analysis, though, it&rsquo;s enough to know that well-connected nodes will typically get clustered together.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">position <span style="color:#555">=</span> nx<span style="color:#555">.</span>spring_layout(subgraph, center<span style="color:#555">=</span>(<span style="color:#f60">0</span>, <span style="color:#f60">0</span>), k<span style="color:#555">=</span><span style="color:#f60">5</span>)
+plot_network_graph(
+    subgraph, position, pagerank_scores,
+    edge_factor<span style="color:#555">=</span><span style="color:#f60">200</span>, node_factor<span style="color:#555">=</span><span style="color:#f60">100000</span>
+)</code></pre></div>
+<p><img src="/images/archer-network/output_54_0.png" alt="png" /></p>
+
+<p>As expected, the characters who are highly connected are clustered in the middle. There&rsquo;s an immediate cluster of the main characters in the center of the network - with looser second ring of characters surrounding them. These are the characters who still made frequent appearences despite not being the main focus of the show (e.g. Barry, Katya, Woodhouse). And finally, we have the not-so-important folks sitting on the outside of the network.</p>
+
+<p>This is cool, but it&rsquo;s a bit messy - I&rsquo;m gonna try plotting the network with a circular layout instead.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">position <span style="color:#555">=</span> nx<span style="color:#555">.</span>circular_layout(subgraph, center<span style="color:#555">=</span>(<span style="color:#f60">0</span>, <span style="color:#f60">0</span>))
+plot_network_graph(
+    subgraph, position, pagerank_scores,
+    edge_factor<span style="color:#555">=</span><span style="color:#f60">1500</span>, node_factor<span style="color:#555">=</span><span style="color:#f60">50000</span>
+)</code></pre></div>
+<p><img src="/images/archer-network/output_56_0.png" alt="png" /></p>
+
+<p>Now this is pretty interesting - it&rsquo;s immediately obvious that there&rsquo;s a highly-connected squad that dominates the dialogue of the show. There&rsquo;s an especially strong triangle between Archer, Lana, and Mallory.</p>
+
+<p>We can also look at how the main characters interact with all the other characters in the <em>Archer</em> universe by plotting the network with a bipartite layout, where the nodes are arranged in two straight lines.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">position <span style="color:#555">=</span> nx<span style="color:#555">.</span>bipartite_layout(subgraph, center<span style="color:#555">=</span>(<span style="color:#f60">0</span>, <span style="color:#f60">0</span>), nodes<span style="color:#555">=</span>main_characters)
+plot_network_graph(
+    subgraph, position, pagerank_scores,
+    edge_factor<span style="color:#555">=</span><span style="color:#f60">500</span>, node_factor<span style="color:#555">=</span><span style="color:#f60">50000</span>
+  )</code></pre></div>
+<p><img src="/images/archer-network/output_58_0.png" alt="png" /></p>
+
+<h3 id="the-archer-universe-without-acher-and-co">The <em>Archer</em> Universe&hellip;without Acher and Co</h3>
+
+<p>From the first graph we can see that the network is dominated by the core gang of Acher and co. Since they&rsquo;re so highly connected to everyone else, it&rsquo;s hard to pick out other clusters within the network. It&rsquo;ll be interesting to see what the network looks like without the main characters.</p>
+
+<p>I&rsquo;m going to remove the main characters and keep all the characters who speak more than 10 times over the five seasons.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">chars_to_plot <span style="color:#555">=</span> [
+    char <span style="color:#069;font-weight:bold">for</span> char, freq <span style="color:#000;font-weight:bold">in</span> char_frequencies<span style="color:#555">.</span>items() 
+    <span style="color:#069;font-weight:bold">if</span> freq <span style="color:#555">&gt;</span> <span style="color:#f60">10</span> <span style="color:#000;font-weight:bold">and</span> char <span style="color:#000;font-weight:bold">not</span> <span style="color:#000;font-weight:bold">in</span> main_characters
+]
+
+sub_g <span style="color:#555">=</span> graph<span style="color:#555">.</span>subgraph(chars_to_plot) 
+pagerank_vec <span style="color:#555">=</span> create_pagerank_df(sub_g)[<span style="color:#c30">&#39;pagerank&#39;</span>]
+
+position <span style="color:#555">=</span> nx<span style="color:#555">.</span>spring_layout(sub_g, k<span style="color:#555">=</span><span style="color:#f60">3</span>)
+plot_network_graph(
+    sub_g, position, pagerank_vec,
+    edge_factor<span style="color:#555">=</span><span style="color:#f60">25</span>, node_factor<span style="color:#555">=</span><span style="color:#f60">50000</span>
+)</code></pre></div>
+<p><img src="/images/archer-network/output_61_0.png" alt="png" /></p>
+
+<p>Without the main characters, we can actually see some clusters in the network. For instance, we have:</p>
+
+<ul>
+<li>Riley, Bucky, and Noah who appeared in the 3 episodes of the <a href=https://archer.fandom.com/wiki/Heart_of_Archness_(Trilogy)>Heart of Archness</a> trilogy when Archer became a Pirate King on Pangu Island</li>
+<li>Randy, Janelle, and Ponder who make their only appearence when Archer and Ray visit them in <a href="https://archer.fandom.com/wiki/Bloody_Ferlin">Bloody Ferlin</a></li>
+<li>Calderon, Comandante, and Juliana who ran a drug cartel in <a href="https://archer.fandom.com/wiki/Archer_Vice">Archer Vice</a>&hellip;before Calderon was overthrown by Cyril, of all people</li>
+</ul>
+
+<p>And&hellip;<em>[cue Archer theme music]</em> that&rsquo;s all I&rsquo;ve got!
+<img src='/images/archer-network/show/archer_bloody_mary.png' width=650px></p>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="https://ashleyshine.github.io/posts/strava-viz-running/">&laquo; Mapping Three Years of Running</a>
+    
+    
+  </div>
+</section>
+
+  
+</body>
+</html>
+
+
+
