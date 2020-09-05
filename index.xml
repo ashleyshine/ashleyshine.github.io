@@ -26,16 +26,12 @@ Sections  Processing Scripts Constructing the Character Network Character Intera
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://ashleyshine.github.io/about/</link>
+      <title>Bookshelf</title>
+      <link>https://ashleyshine.github.io/books/</link>
       <pubDate>Tue, 18 Jun 2019 13:01:27 -0700</pubDate>
       
-      <guid>https://ashleyshine.github.io/about/</guid>
-      <description>Currently at Factual, where I work on data science and engineering problems with geospatial data.
-Previously at Ticketmaster, where I worked on the personalized recommendations team.
-I studied Applied Math &amp;amp; Statistics at UCLA.
-In my spare time you can find me cycling, shopping at Trader Joes, or attempting to complete the NYT mini crossword.
-You can also find me on Github and LinkedIn.</description>
+      <guid>https://ashleyshine.github.io/books/</guid>
+      <description>Current  Hands-On Machine Learning with Scikit-Learn and TensorFlow Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems  Technical  Clean Code: A Handbook of Agile Software Craftsmanship (5 / 5) &amp;mdash; Write code that is easy to maintain and work with. Be thoughtful about your code. Automate the Boring Stuff with Python: Practical Programming for Total Beginners (5 / 5) &amp;mdash; The world is your oyster if you know some basic scripting.</description>
     </item>
     
     <item>
@@ -69,6 +65,19 @@ Things I have wanted to do for a while and finally found time to do:
       <guid>https://ashleyshine.github.io/posts/fall-2017-analysis/</guid>
       <description>All the code for this project is available on github.
 &amp;lsquo;Twas the night (ten days) before Christmas&amp;hellip; when I finished fall quarter finals, came home for Winter Break, looked at my calendar, and realized something crazy - I had, for once, free time! To do whatever I wanted! Imagine that. Then I realized I also had something else: because I time-block with my calendar (Google Calendar to be specific) in order to plan and protect my time, I had (unknowingly) generated a detailed dataset on how I&amp;rsquo;ve spent my time in over the past year or two.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://ashleyshine.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashleyshine.github.io/about/</guid>
+      <description>Currently at Foursquare, where I work on data science and engineering problems with location data.
+Previously at I worked with geospatial data at Factual and personalized recommendations at Ticketmaster.
+I studied Applied Math &amp;amp; Statistics at UCLA.
+In my spare time you can find me biking around LA or attempting to complete the NYT mini crossword.
+You can also find me on Github and LinkedIn.</description>
     </item>
     
   </channel>
