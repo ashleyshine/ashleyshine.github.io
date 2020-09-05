@@ -26,15 +26,6 @@ Sections  Processing Scripts Constructing the Character Network Character Intera
     </item>
     
     <item>
-      <title>Bookshelf</title>
-      <link>https://ashleyshine.github.io/books/</link>
-      <pubDate>Tue, 18 Jun 2019 13:01:27 -0700</pubDate>
-      
-      <guid>https://ashleyshine.github.io/books/</guid>
-      <description>Current  Hands-On Machine Learning with Scikit-Learn and TensorFlow Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems  Technical  Clean Code: A Handbook of Agile Software Craftsmanship (5 / 5) &amp;mdash; Write code that is easy to maintain and work with. Be thoughtful about your code. Automate the Boring Stuff with Python: Practical Programming for Total Beginners (5 / 5) &amp;mdash; The world is your oyster if you know some basic scripting.</description>
-    </item>
-    
-    <item>
       <title>Mapping Three Years of Running</title>
       <link>https://ashleyshine.github.io/posts/strava-viz-running/</link>
       <pubDate>Sat, 22 Sep 2018 00:00:00 +0000</pubDate>
